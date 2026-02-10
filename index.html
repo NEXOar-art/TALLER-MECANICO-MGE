@@ -424,7 +424,7 @@
     <!-- FOOTER -->
     <footer class="bg-primary-dark text-gray-500 py-8 md:py-12 text-center">
         <div class="container mx-auto px-4">
-            <p class="mb-3 md:mb-4 text-white font-display font-bold text-xl md:text-2xl glow-text">MECANICA DE ELECTROMECANICA JS Diagnóstico del Automotor</p>
+            <p class="mb-3 md:mb-4 text-white font-display font-bold text-xl md:text-2xl glow-text">TALLER DE ELECTROMECANICA JS Diagnóstico del Automotor</p>
             <p class="text-sm md:text-base">&copy; 2025 Todos los derechos reservados.</p>
         </div>
     </footer>
@@ -511,7 +511,7 @@
                 const context = document.getElementById('inputContext').options[document.getElementById('inputContext').selectedIndex].text || 'No especificado';
                 const name = document.getElementById('inputName').value || 'N/A';
                 const phone = document.getElementById('inputPhone').value || 'N/A';
-                const message = `🚗 *¡Hola MECANICA Y ELECTROMECANICA E & M! 👋*\n\n📛 *Contacto:* ${name}\n📱 *Tel:* ${phone}\n\n🚘 *Vehículo:* ${vehicle}\n🛣️ *Km:* ${km}\n\n⚠️ *Síntomas:* ${symptoms}\n\n🔍 *Contexto:* ${context}\n\n📅 *Solicito turno urgente! 💨*`;
+                const message = `🚗 *¡Hola TALLER DE ELECTROMECANICA JS! 👋*\n\n📛 *Contacto:* ${name}\n📱 *Tel:* ${phone}\n\n🚘 *Vehículo:* ${vehicle}\n🛣️ *Km:* ${km}\n\n⚠️ *Síntomas:* ${symptoms}\n\n🔍 *Contexto:* ${context}\n\n📅 *Solicito turno urgente! 💨*`;
                 const whatsappUrl = `https://api.whatsapp.com/send?phone=+541138499226&text=${encodeURIComponent(message)}`;
                 setTimeout(() => {
                     window.open(whatsappUrl, '_blank');
@@ -537,6 +537,7 @@
     </script>
 </body>
 </html>
+
 
 
 
