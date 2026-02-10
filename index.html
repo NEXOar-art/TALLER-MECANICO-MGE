@@ -5,14 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="MECANICA DE ELECTROMECANICA JS- Diagnóstico Automotriz Computarizado y Mecánica Integral. Turnos online rápidos.">
     <title> MECANICA DE ELECTROMECANICA JS | Diagnóstico del Automotor</title>
-
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
     <script>
         tailwind.config = {
             theme: {
@@ -40,7 +38,6 @@
             }
         }
     </script>
-
     <style>
         body { background: #0A0F1A; color: #E2E8F0; }
         .glass { background: rgba(30, 41, 59, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(0, 212, 255, 0.2); }
@@ -76,7 +73,6 @@
     </style>
 </head>
 <body class="antialiased relative">
-
     <!-- NAVBAR -->
     <nav class="fixed w-full z-50 top-0 glass border-b border-gray-700">
         <div class="container mx-auto px-4 h-16 md:h-20 flex justify-between items-center">
@@ -101,18 +97,25 @@
                         Pre-Diagnóstico
                     </a>
                 </div>
+                <!-- Redes sociales agregadas aquí: visibles inmediatamente en la navbar (top-right), tanto en móvil como en desktop -->
+                <div class="flex items-center gap-3 md:gap-5 ml-auto">
+                    <a href="https://www.instagram.com/electromecanicajs/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-gray-300 hover:text-primary-blue text-xl md:text-2xl transition-all hover:scale-110 hover:glow-text">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@tallerelectromeca19" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="text-gray-300 hover:text-primary-blue text-xl md:text-2xl transition-all hover:scale-110 hover:glow-text">
+                        <i class="fa-brands fa-tiktok"></i>
+                    </a>
+                </div>
             </div>
         </div>
         <div id="status-bar-mobile" class="md:hidden w-full py-2 text-center text-xs font-bold uppercase bg-gray-800">Cargando estado...</div>
     </nav>
-
     <!-- Botón flotante "Pedir Turno" mejor posicionado y visible en móviles -->
     <div class="fixed bottom-24 md:bottom-10 right-4 z-50">
         <a href="#diagnostico" class="bg-primary-blue hover:bg-blue-500 text-primary-dark px-6 py-3 md:px-8 md:py-4 rounded-full font-bold shadow-neon transition transform hover:scale-105 flex items-center gap-2 md:gap-3 hover:shadow-glow text-sm md:text-base">
             <i class="fa-solid fa-calendar-check text-lg md:text-xl"></i> Pedir Turno
         </a>
     </div>
-
     <!-- HERO -->
     <header class="relative pt-24 pb-24 md:pt-32 md:pb-32 lg:pt-40 lg:pb-24 min-h-screen flex items-center overflow-hidden bg-gradient-to-b from-primary-dark to-gray-900">
         <div id="parallax-container" class="absolute inset-0">
@@ -151,7 +154,6 @@
             </div>
         </div>
     </header>
-
     <!-- ASESORES -->
     <section id="asesoramiento" class="py-16 md:py-24 bg-gray-900">
         <div class="container mx-auto px-4">
@@ -195,7 +197,6 @@
             </div>
         </div>
     </section>
-
     <!-- SERVICIOS -->
     <section class="py-16 md:py-24 bg-gray-900">
         <div class="container mx-auto px-4">
@@ -237,7 +238,6 @@
             </div>
         </div>
     </section>
-
     <!-- TESTIMONIOS -->
     <section class="py-16 md:py-24 bg-gray-900 border-t border-gray-800">
         <div class="container mx-auto px-4">
@@ -314,7 +314,6 @@
             <p class="text-center text-gray-500 mt-6 md:mt-8 text-sm md:text-base">Desliza para más opiniones</p>
         </div>
     </section>
-
     <!-- FORMULARIO -->
     <section id="diagnostico" class="py-16 md:py-24 bg-gradient-to-b from-gray-900 to-primary-dark relative overflow-hidden">
         <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,212,255,0.1),transparent_50%)]"></div>
@@ -388,14 +387,13 @@
                             </div>
                         </div>
                         <button type="submit" class="w-full bg-primary-blue text-primary-dark font-bold uppercase text-lg md:text-xl py-4 md:py-5 rounded-lg hover:shadow-neon transition flex items-center justify-center gap-3">
-                            <i class="fa-brands fa-whatsapp text-2xl md:text-3xl"></i> Enviar a  TALLER DE ELECTROMECANICA JS
+                            <i class="fa-brands fa-whatsapp text-2xl md:text-3xl"></i> Enviar a TALLER DE ELECTROMECANICA JS
                         </button>
                     </form>
                 </div>
             </div>
         </div>
     </section>
-
     <!-- TRUST + UBICACIÓN -->
     <section class="py-16 md:py-20 bg-gray-900 border-t border-gray-800">
         <div class="container mx-auto px-4 text-center">
@@ -411,7 +409,7 @@
                     <p class="text-gray-400 mb-3 md:mb-4 text-base md:text-lg">Ven para validación final.</p>
                     <div class="flex items-center gap-2 md:gap-3 text-gray-300 text-sm md:text-base">
                         <i class="fa-regular fa-clock text-primary-blue text-xl md:text-2xl"></i>
-                        <span>Lunes a  Viernes 09:00-12:00 | 14:00-20:00 | Sábado 09:00-12:00 | 13:00-17:00 | Domingo Cerrado</span>
+                        <span>Lunes a Viernes 09:00-12:00 | 14:00-20:00 | Sábado 09:00-12:00 | 13:00-17:00 | Domingo Cerrado</span>
                     </div>
                 </div>
                 <a href="https://maps.app.goo.gl/gdyW2BGRxU79Smg8A" target="_blank" class="bg-primary-blue text-primary-dark px-6 py-3 md:px-8 md:py-4 rounded-lg font-bold hover:shadow-neon transition flex items-center gap-2 md:gap-3 text-sm md:text-base">
@@ -420,7 +418,6 @@
             </div>
         </div>
     </section>
-
     <!-- FOOTER -->
     <footer class="bg-primary-dark text-gray-500 py-8 md:py-12 text-center">
         <div class="container mx-auto px-4">
@@ -428,7 +425,6 @@
             <p class="text-sm md:text-base">&copy; 2025 Todos los derechos reservados.</p>
         </div>
     </footer>
-
     <!-- STICKY MOBILE CTA -->
     <div class="fixed bottom-0 left-0 w-full bg-gray-800 border-t border-gray-700 p-4 md:hidden z-50 flex gap-4">
         <a href="#asesoramiento" class="flex-1 bg-gray-900 text-white font-bold py-3 rounded text-center border border-gray-700 text-sm">
@@ -438,7 +434,6 @@
             Iniciar Diagnóstico
         </a>
     </div>
-
     <!-- JAVASCRIPT con emojis en el mensaje de WhatsApp -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -537,6 +532,7 @@
     </script>
 </body>
 </html>
+
 
 
 
