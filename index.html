@@ -1,1247 +1,1146 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Taller FC mecanica - Diagnóstico Automotriz Computarizado y Mecánica Integral. Turnos online rápidos y profesionales.">
-    <meta name="theme-color" content="#0A0F1A">
-    <title>Taller FC mecanica | Diagnóstico Automotriz Profesional</title>
-    
-    <!-- Preconnect para mejor rendimiento -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- Tailwind CSS CDN + Supresor de warnings -->
-    <script>
-        (function() {
-            const originalWarn = console.warn;
-            console.warn = function(...args) {
-                if (typeof args[0] === 'string' && args[0].includes('cdn.tailwindcss.com')) return;
-                originalWarn.apply(console, args);
-            };
-        })();
-    </script>
-    <script src="https://cdn.tailwindcss.com/3.4.14"></script>
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Manrope', 'sans-serif'],
-                        display: ['Space Grotesk', 'sans-serif'],
-                    },
-                    colors: {
-                        primary: {
-                            cyan: '#00D9FF',
-                            blue: '#0066FF',
-                            dark: '#0A0F1A',
-                            gray: '#151E2E',
-                            card: '#1E2A3A',
-                            light: '#F1F5F9',
-                        }
-                    },
-                    boxShadow: {
-                        'neon': '0 0 25px rgba(0, 217, 255, 0.45)',
-                        'glow': '0 0 40px rgba(0, 102, 255, 0.25)',
-                        'card': '0 10px 40px -10px rgba(0, 0, 0, 0.5)',
-                        'soft': '0 4px 20px rgba(0, 0, 0, 0.15)',
-                    },
-                    screens: {
-                        'xs': '475px',
-                        '2xl': '1400px',
-                    },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-12px)' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        :root {
-            --gradient-primary: linear-gradient(135deg, #00D9FF 0%, #0066FF 100%);
-            --gradient-dark: linear-gradient(180deg, #0A0F1A 0%, #151E2E 100%);
-        }
-        
-        * {
-            -webkit-tap-highlight-color: transparent;
-        }
-        
-        body { 
-            background: var(--gradient-dark); 
-            color: #E2E8F0; 
-            font-feature-settings: "cv02", "cv03", "cv04", "cv11";
-            overflow-x: hidden;
-        }
-        
-        /* Glassmorphism moderno */
-        .glass { 
-            background: rgba(30, 42, 58, 0.75); 
-            backdrop-filter: blur(20px); 
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(0, 217, 255, 0.15);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        }
-        
-        .glass-card {
-            background: linear-gradient(145deg, rgba(30, 42, 58, 0.9), rgba(21, 30, 46, 0.95));
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-        
-        .glass-card:hover {
-            border-color: rgba(0, 217, 255, 0.4);
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-card), 0 0 30px rgba(0, 217, 255, 0.15);
-        }
-        
-        /* Textos y efectos */
-        .glow-text { 
-            text-shadow: 0 0 20px rgba(0, 217, 255, 0.6), 0 0 40px rgba(0, 102, 255, 0.3); 
-            letter-spacing: -0.02em;
-        }
-        
-        .gradient-text {
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .pulse-glow { 
-            animation: pulse-glow 3s ease-in-out infinite; 
-        }
-        
-        @keyframes pulse-glow { 
-            0%, 100% { opacity: 1; box-shadow: 0 0 20px rgba(0, 217, 255, 0.4); } 
-            50% { opacity: 0.85; box-shadow: 0 0 35px rgba(0, 217, 255, 0.7); } 
-        }
-        
-        /* Animaciones de entrada */
-        .fade-in-up { 
-            opacity: 0; 
-            transform: translateY(30px); 
-            animation: fadeInUp 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards; 
-        }
-        
-        @keyframes fadeInUp { 
-            to { opacity: 1; transform: translateY(0); } 
-        }
-        
-        /* Hover effects profesionales */
-        .hover-lift { 
-            transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1); 
-        }
-        
-        .hover-lift:hover { 
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-glow), var(--shadow-card);
-        }
-        
-        .hover-glow { 
-            transition: all 0.4s ease; 
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hover-glow::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 217, 255, 0.15), transparent);
-            transition: left 0.6s ease;
-        }
-        
-        .hover-glow:hover::before {
-            left: 100%;
-        }
-        
-        .hover-glow:hover { 
-            box-shadow: 0 0 35px rgba(0, 217, 255, 0.35); 
-            transform: translateY(-6px);
-        }
-        
-        /* Parallax suave */
-        .parallax-image { 
-            transition: transform 0.4s ease-out; 
-            will-change: transform;
-            filter: brightness(0.85) contrast(1.1);
-        }
-        
-        .parallax-bg { 
-            animation: subtle-move 25s ease-in-out infinite alternate; 
-        }
-        
-        @keyframes subtle-move {
-            0% { transform: translate(0, 0) scale(1.03); }
-            50% { transform: translate(3%, 2%) scale(1.07); }
-            100% { transform: translate(0, 0) scale(1.03); }
-        }
-        
-        /* Inputs modernos */
-        .input-modern { 
-            background: rgba(21, 30, 46, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 14px;
-            transition: all 0.3s ease;
-            color: #fff;
-        }
-        
-        .input-modern:focus { 
-            border-color: #00D9FF; 
-            box-shadow: 0 0 0 3px rgba(0, 217, 255, 0.25), 0 0 20px rgba(0, 217, 255, 0.15);
-            outline: none;
-            background: rgba(21, 30, 46, 0.95);
-        }
-        
-        .input-modern::placeholder {
-            color: rgba(226, 232, 240, 0.5);
-        }
-        
-        .input-valid { 
-            border-color: #22C55E !important; 
-            background-image: url("image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%2322c55e'%3e%3cpath fill-rule='evenodd' d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z' clip-rule='evenodd'/%3e%3c/svg%3e"); 
-            background-repeat: no-repeat; 
-            background-position: right 1rem center; 
-            background-size: 1.3em; 
-        }
-        
-        .input-invalid { 
-            border-color: #EF4444 !important; 
-            animation: shake 0.5s ease-in-out;
-        }
-        
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-4px); }
-            75% { transform: translateX(4px); }
-        }
-        
-        /* Botones premium */
-        .btn-primary {
-            background: var(--gradient-primary);
-            color: #0A0F1A;
-            font-weight: 700;
-            letter-spacing: 0.02em;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.35s ease;
-        }
-        
-        .btn-primary::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%, rgba(255,255,255,0.1) 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 102, 255, 0.45), 0 0 30px rgba(0, 217, 255, 0.3);
-        }
-        
-        .btn-primary:hover::after {
-            opacity: 1;
-        }
-        
-        .btn-outline {
-            background: transparent;
-            border: 2px solid rgba(255, 255, 255, 0.25);
-            color: #fff;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-outline:hover {
-            border-color: #00D9FF;
-            background: rgba(0, 217, 255, 0.1);
-            transform: translateY(-3px);
-        }
-        
-        /* Botón de reseñas - estilo especial dorado */
-        .btn-review {
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-            color: #0A0F1A;
-            font-weight: 700;
-            letter-spacing: 0.02em;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.35s ease;
-        }
-        
-        .btn-review::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 50%, rgba(255,255,255,0.15) 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .btn-review:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.45), 0 0 30px rgba(255, 165, 0, 0.3);
-        }
-        
-        .btn-review:hover::after {
-            opacity: 1;
-        }
-        
-        /* Scrollbar personalizado */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: rgba(21, 30, 46, 0.6);
-            border-radius: 4px;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, #00D9FF, #0066FF);
-            border-radius: 4px;
-            border: 2px solid transparent;
-            background-clip: content-box;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(180deg, #33E1FF, #3385FF);
-        }
-        
-        /* Responsive typography */
-        @media (max-width: 640px) {
-            .text-5xl { font-size: 2.25rem; line-height: 1.15; }
-            .text-7xl { font-size: 2.75rem; line-height: 1.1; }
-            h1 { font-size: 2.3rem; }
-            .container { padding-left: 1.25rem; padding-right: 1.25rem; }
-        }
-        
-        @media (max-width: 475px) {
-            .text-3xl { font-size: 1.75rem; }
-            .py-24 { padding-top: 3.5rem; padding-bottom: 3.5rem; }
-            .glass-card { border-radius: 16px; }
-        }
-        
-        /* Badge de estado animado */
-        .status-dot {
-            position: relative;
-        }
-        
-        .status-dot::after {
-            content: '';
-            position: absolute;
-            top: -2px; left: -2px;
-            right: -2px; bottom: -2px;
-            border-radius: 50%;
-            background: inherit;
-            filter: blur(4px);
-            opacity: 0.7;
-            animation: pulse 2s infinite;
-        }
-        
-        /* Separador decorativo */
-        .divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(0, 217, 255, 0.4), transparent);
-            margin: 2rem 0;
-        }
-        
-        /* Animación de carga sutil */
-        .loading-skeleton {
-            background: linear-gradient(90deg, rgba(30,42,58,0.3) 25%, rgba(45,60,80,0.5) 50%, rgba(30,42,58,0.3) 75%);
-            background-size: 200% 100%;
-            animation: loading 1.5s infinite;
-            border-radius: 8px;
-        }
-        
-        @keyframes loading {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
-        
-        /* Efecto de partículas sutil (decorativo) */
-        .particles {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            pointer-events: none;
-            overflow: hidden;
-            z-index: 0;
-        }
-        
-        .particle {
-            position: absolute;
-            width: 3px; height: 3px;
-            background: rgba(0, 217, 255, 0.6);
-            border-radius: 50%;
-            animation: float-particle 15s infinite linear;
-            opacity: 0.7;
-        }
-        
-        @keyframes float-particle {
-            0% { transform: translateY(100vh) translateX(0); opacity: 0; }
-            10% { opacity: 0.8; }
-            90% { opacity: 0.8; }
-            100% { transform: translateY(-20px) translateX(50px); opacity: 0; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="AUTOTECNICA SERVICIOS - Diagnóstico Automotriz Computarizado y Mecánica Integral. Turnos online rápidos y profesionales.">
+<meta name="theme-color" content="#0A0F1A">
+<title>AUTOTECNICA SERVICIOS | Diagnóstico Automotriz Profesional</title>
+<!-- Preconnect para mejor rendimiento-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Tailwind CSS CDN + Supresor de warnings-->
+<script>
+(function(){
+const originalWarn= console.warn;
+console.warn= function(...args){
+if(typeof args[0]=== 'string' && args[0].includes('cdn.tailwindcss.com')) return;
+originalWarn.apply(console, args); }; })();
+</script>
+<script src="https://cdn.tailwindcss.com/3.4.14"></script>
+<!-- Font Awesome-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- Google Fonts-->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<script>
+tailwind.config ={
+theme:{
+extend:{
+fontFamily:{
+sans:['Manrope','sans-serif'],
+display:['Space Grotesk','sans-serif'],
+},
+colors:{
+primary:{
+cyan:'#00D9FF',
+blue:'#0066FF',
+dark:'#0A0F1A',
+gray:'#151E2E',
+card:'#1E2A3A',
+light:'#F1F5F9',
+}
+},
+boxShadow:{
+'neon':'0 0 25px rgba(0, 217, 255, 0.45)',
+'glow':'0 0 40px rgba(0, 102, 255, 0.25)',
+'card':'0 10px 40px-10px rgba(0, 0, 0, 0.5)',
+'soft':'0 4px 20px rgba(0, 0, 0, 0.15)',
+},
+screens:{
+'xs':'475px',
+'2xl':'1400px',
+},
+animation:{
+'float':'float 6s ease-in-out infinite',
+'pulse-slow':'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+},
+keyframes:{
+float:{
+'0%, 100%':{transform:'translateY(0)'},
+'50%':{transform:'translateY(-12px)'},
+}
+}
+}
+}
+}
+</script>
+<style>
+:root{
+--gradient-primary: linear-gradient(135deg,#00D9FF 0%,#0066FF 100%);
+--gradient-dark: linear-gradient(180deg,#0A0F1A 0%,#151E2E 100%);
+}
+*{
+-webkit-tap-highlight-color: transparent;
+}
+body{
+background: var(--gradient-dark);
+color:#E2E8F0;
+font-feature-settings:"cv02","cv03","cv04","cv11";
+overflow-x: hidden;
+}
+/* Glassmorphism moderno*/
+.glass{
+background: rgba(30, 42, 58, 0.75);
+backdrop-filter: blur(20px);
+-webkit-backdrop-filter: blur(20px);
+border: 1px solid rgba(0, 217, 255, 0.15);
+box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+.glass-card{
+background: linear-gradient(145deg, rgba(30, 42, 58, 0.9), rgba(21, 30, 46, 0.95));
+backdrop-filter: blur(16px);
+border: 1px solid rgba(255, 255, 255, 0.08);
+border-radius: 20px;
+transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.glass-card:hover{
+border-color: rgba(0, 217, 255, 0.4);
+transform: translateY(-6px);
+box-shadow: var(--shadow-card), 0 0 30px rgba(0, 217, 255, 0.15);
+}
+/* Textos y efectos*/
+.glow-text{
+text-shadow: 0 0 20px rgba(0, 217, 255, 0.6), 0 0 40px rgba(0, 102, 255, 0.3);
+letter-spacing:-0.02em;
+}
+.gradient-text{
+background: var(--gradient-primary);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+}
+.pulse-glow{
+animation: pulse-glow 3s ease-in-out infinite;
+}
+@keyframes pulse-glow{
+0%, 100%{opacity: 1; box-shadow: 0 0 20px rgba(0, 217, 255, 0.4);}
+50%{opacity: 0.85; box-shadow: 0 0 35px rgba(0, 217, 255, 0.7);}
+}
+/* Animaciones de entrada*/
+.fade-in-up{
+opacity: 0;
+transform: translateY(30px);
+animation: fadeInUp 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+@keyframes fadeInUp{
+to{opacity: 1; transform: translateY(0);}
+}
+/* Hover effects profesionales*/
+.hover-lift{
+transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.hover-lift:hover{
+transform: translateY(-8px);
+box-shadow: var(--shadow-glow), var(--shadow-card);
+}
+.hover-glow{
+transition: all 0.4s ease;
+position: relative;
+overflow: hidden;
+}
+.hover-glow::before{
+content:'';
+position: absolute;
+top: 0; left:-100%;
+width: 100%; height: 100%;
+background: linear-gradient(90deg, transparent, rgba(0, 217, 255, 0.15), transparent);
+transition: left 0.6s ease;
+}
+.hover-glow:hover::before{
+left: 100%;
+}
+.hover-glow:hover{
+box-shadow: 0 0 35px rgba(0, 217, 255, 0.35);
+transform: translateY(-6px);
+}
+/* Parallax suave*/
+.parallax-image{
+transition: transform 0.4s ease-out;
+will-change: transform;
+filter: brightness(0.85) contrast(1.1);
+}
+.parallax-bg{
+animation: subtle-move 25s ease-in-out infinite alternate;
+}
+@keyframes subtle-move{
+0%{transform: translate(0, 0) scale(1.03);}
+50%{transform: translate(3%, 2%) scale(1.07);}
+100%{transform: translate(0, 0) scale(1.03);}
+}
+/* Inputs modernos*/
+.input-modern{
+background: rgba(21, 30, 46, 0.8);
+border: 1px solid rgba(255, 255, 255, 0.12);
+border-radius: 14px;
+transition: all 0.3s ease;
+color:#fff;
+}
+.input-modern:focus{
+border-color:#00D9FF;
+box-shadow: 0 0 0 3px rgba(0, 217, 255, 0.25), 0 0 20px rgba(0, 217, 255, 0.15);
+outline: none;
+background: rgba(21, 30, 46, 0.95);
+}
+.input-modern::placeholder{
+color: rgba(226, 232, 240, 0.5);
+}
+.input-valid{
+border-color:#22C55E!important;
+background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%2322c55e'%3e%3cpath fill-rule='evenodd' d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z' clip-rule='evenodd'/%3e%3c/svg%3e");
+background-repeat: no-repeat;
+background-position: right 1rem center;
+background-size: 1.3em;
+}
+.input-invalid{
+border-color:#EF4444!important;
+animation: shake 0.5s ease-in-out;
+}
+@keyframes shake{
+0%, 100%{transform: translateX(0);}
+25%{transform: translateX(-4px);}
+75%{transform: translateX(4px);}
+}
+/* Botones premium*/
+.btn-primary{
+background: var(--gradient-primary);
+color:#0A0F1A;
+font-weight: 700;
+letter-spacing: 0.02em;
+position: relative;
+overflow: hidden;
+transition: all 0.35s ease;
+}
+.btn-primary::after{
+content:'';
+position: absolute;
+top: 0; left: 0; right: 0; bottom: 0;
+background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%, rgba(255,255,255,0.1) 100%);
+opacity: 0;
+transition: opacity 0.3s ease;
+}
+.btn-primary:hover{
+transform: translateY(-3px);
+box-shadow: 0 15px 40px rgba(0, 102, 255, 0.45), 0 0 30px rgba(0, 217, 255, 0.3);
+}
+.btn-primary:hover::after{
+opacity: 1;
+}
+.btn-outline{
+background: transparent;
+border: 2px solid rgba(255, 255, 255, 0.25);
+color:#fff;
+font-weight: 600;
+transition: all 0.3s ease;
+}
+.btn-outline:hover{
+border-color:#00D9FF;
+background: rgba(0, 217, 255, 0.1);
+transform: translateY(-3px);
+}
+/* Botón de reseñas - estilo especial dorado*/
+.btn-review{
+background: linear-gradient(135deg,#FFD700 0%,#FFA500 100%);
+color:#0A0F1A;
+font-weight: 700;
+letter-spacing: 0.02em;
+position: relative;
+overflow: hidden;
+transition: all 0.35s ease;
+}
+.btn-review::after{
+content:'';
+position: absolute;
+top: 0; left: 0; right: 0; bottom: 0;
+background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 50%, rgba(255,255,255,0.15) 100%);
+opacity: 0;
+transition: opacity 0.3s ease;
+}
+.btn-review:hover{
+transform: translateY(-3px);
+box-shadow: 0 15px 40px rgba(255, 215, 0, 0.45), 0 0 30px rgba(255, 165, 0, 0.3);
+}
+.btn-review:hover::after{
+opacity: 1;
+}
+/* Scrollbar personalizado*/
+::-webkit-scrollbar{
+width: 8px; height: 8px;
+}
+::-webkit-scrollbar-track{
+background: rgba(21, 30, 46, 0.6);
+border-radius: 4px;
+}
+::-webkit-scrollbar-thumb{
+background: linear-gradient(180deg,#00D9FF,#0066FF);
+border-radius: 4px;
+border: 2px solid transparent;
+background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover{
+background: linear-gradient(180deg,#33E1FF,#3385FF);
+}
+/* Responsive typography */
+@media(max-width: 640px){
+.text-5xl{font-size: 2.25rem; line-height: 1.15;}
+.text-7xl{font-size: 2.75rem; line-height: 1.1;}
+h1{font-size: 2.3rem;}
+.container{padding-left: 1.25rem; padding-right: 1.25rem;}
+}
+@media(max-width: 475px){
+.text-3xl{font-size: 1.75rem;}
+.py-24{padding-top: 3.5rem; padding-bottom: 3.5rem;}
+.glass-card{border-radius: 16px;}
+}
+/* Badge de estado animado*/
+.status-dot{
+position: relative;
+}
+.status-dot::after{
+content:'';
+position: absolute;
+top:-2px; left:-2px; right:-2px; bottom:-2px;
+border-radius: 50%;
+background: inherit;
+filter: blur(4px);
+opacity: 0.7;
+animation: pulse 2s infinite;
+}
+/* Separador decorativo*/
+.divider{
+height: 1px;
+background: linear-gradient(90deg, transparent, rgba(0, 217, 255, 0.4), transparent);
+margin: 2rem 0;
+}
+/* Animación de carga sutil*/
+.loading-skeleton{
+background: linear-gradient(90deg, rgba(30,42,58,0.3) 25%, rgba(45,60,80,0.5) 50%, rgba(30,42,58,0.3) 75%);
+background-size: 200% 100%;
+animation: loading 1.5s infinite;
+border-radius: 8px;
+}
+@keyframes loading{
+0%{background-position: 200% 0;}
+100%{background-position:-200% 0;}
+}
+/* Efecto de partículas sutil(decorativo)*/
+.particles{
+position: absolute;
+top: 0; left: 0; right: 0; bottom: 0;
+pointer-events: none;
+overflow: hidden;
+z-index: 0;
+}
+.particle{
+position: absolute;
+width: 3px; height: 3px;
+background: rgba(0, 217, 255, 0.6);
+border-radius: 50%;
+animation: float-particle 15s infinite linear;
+opacity: 0.7;
+}
+@keyframes float-particle{
+0%{transform: translateY(100vh) translateX(0); opacity: 0;}
+10%{opacity: 0.8;}
+90%{opacity: 0.8;}
+100%{transform: translateY(-20px) translateX(50px); opacity: 0;}
+}
+</style>
 </head>
 <body class="antialiased relative">
+<!-- Partículas decorativas de fondo-->
+<div class="particles" id="particles"></div>
 
-    <!-- Partículas decorativas de fondo -->
-    <div class="particles" id="particles"></div>
+<!-- NAVBAR-->
+<nav class="fixed w-full z-50 top-0 glass border-b border-white/10 transition-all duration-300" id="navbar">
+<div class="container mx-auto px-4 h-16 md:h-20 flex items-center relative">
+<a href="#" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:static md:translate-x-0 md:translate-y-0 font-display font-bold text-lg sm:text-xl md:text-2xl gradient-text tracking-tight uppercase text-center md:text-left drop-shadow-lg">
+AUTOTECNICA SERVICIOS
+</a>
+<div class="ml-auto flex items-center gap-3 md:gap-5">
+<div id="status-badge-desktop" class="hidden md:flex items-center px-3 py-1.5 md:px-4 md:py-2 rounded-full text-xs font-semibold uppercase tracking-wide bg-white/5 border border-white/10 hover:border-primary-cyan/40 transition-all">
+<span id="status-dot-desktop" class="status-dot w-2 h-2 rounded-full mr-2.5 bg-gray-500"></span>
+<span id="status-text-desktop" class="text-gray-300">Verificando...</span>
+</div>
+<div class="hidden md:flex items-center gap-3 lg:gap-5">
+<a href="#asesoramiento" class="text-gray-300 hover:text-primary-cyan transition text-sm lg:text-base font-medium relative group">
+Asesoramiento
+<span class="absolute bottom-1 left-0 w-0 h-0.5 bg-primary-cyan transition-all group-hover:w-full"></span>
+</a>
+<a href="#diagnostico" class="btn-primary px-4 lg:px-6 py-2 lg:py-2.5 rounded-xl font-bold transition shadow-neon uppercase text-xs lg:text-sm tracking-wide">
+Pre-Diagnóstico
+</a>
+</div>
+</div>
+</div>
+<div id="status-bar-mobile" class="md:hidden w-full py-2 text-center text-xs font-bold uppercase bg-gray-900/80 border-t border-white/10">Verificando estado...</div>
+</nav>
 
-    <!-- NAVBAR -->
-    <nav class="fixed w-full z-50 top-0 glass border-b border-white/10 transition-all duration-300" id="navbar">
-        <div class="container mx-auto px-4 h-16 md:h-20 flex items-center relative">
-            <a href="#" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:static md:translate-x-0 md:translate-y-0 font-display font-bold text-lg sm:text-xl md:text-2xl gradient-text tracking-tight uppercase text-center md:text-left drop-shadow-lg">
-                TALLER FC MECANICA
-            </a>
-            <div class="ml-auto flex items-center gap-3 md:gap-5">
-                <div id="status-badge-desktop" class="hidden md:flex items-center px-3 py-1.5 md:px-4 md:py-2 rounded-full text-xs font-semibold uppercase tracking-wide bg-white/5 border border-white/10 hover:border-primary-cyan/40 transition-all">
-                    <span id="status-dot-desktop" class="status-dot w-2 h-2 rounded-full mr-2.5 bg-gray-500"></span>
-                    <span id="status-text-desktop" class="text-gray-300">Verificando...</span>
-                </div>
-                <div class="hidden md:flex items-center gap-3 lg:gap-5">
-                    <a href="#asesoramiento" class="text-gray-300 hover:text-primary-cyan transition text-sm lg:text-base font-medium relative group">
-                        Asesoramiento
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-cyan transition-all group-hover:w-full"></span>
-                    </a>
-                    <a href="#diagnostico" class="btn-primary px-4 lg:px-6 py-2 lg:py-2.5 rounded-xl font-bold transition shadow-neon uppercase text-xs lg:text-sm tracking-wide">
-                        Pre-Diagnóstico
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div id="status-bar-mobile" class="md:hidden w-full py-2 text-center text-xs font-bold uppercase bg-gray-900/80 border-t border-white/10">Verificando estado...</div>
-    </nav>
+<!-- Botones flotantes premium-->
+<div class="fixed bottom-24 md:bottom-8 right-4 z-50 animate-float flex flex-col gap-3">
+<a href="#diagnostico" class="btn-primary px-5 py-3 md:px-7 md:py-3.5 rounded-2xl shadow-neon transition flex items-center gap-2.5 hover:shadow-glow text-sm font-semibold group">
+<i class="fa-solid fa-calendar-check text-lg"></i>
+<span class="hidden xs:inline">Pedir Turno</span>
+<i class="fa-solid fa-arrow-right ml-1 group-hover:translate-x-1 transition-transform"></i>
+</a>
+<!-- Botón flotante de reseñas-->
+<a href="https://maps.app.goo.gl/9rA49BQ85gNBEEcN9" target="_blank" rel="noopener noreferrer" class="btn-review px-4 py-2.5 md:px-5 md:py-3 rounded-xl shadow-lg transition flex items-center gap-2 text-xs md:text-sm font-semibold group animate-float" style="animation-delay: 0.5s;">
+<i class="fa-solid fa-star text-lg"></i>
+<span class="hidden xs:inline">Deja tu Reseña</span>
+</a>
+<!-- Botón flotante de Instagram-->
+<a href="https://www.instagram.com/autotecnicaservicios/?hl=es" target="_blank" rel="noopener noreferrer" class="btn-outline px-4 py-2.5 md:px-5 md:py-3 rounded-xl shadow-lg transition flex items-center gap-2 text-xs md:text-sm font-semibold group animate-float" style="animation-delay: 1s;">
+<i class="fa-brands fa-instagram text-lg"></i>
+<span class="hidden xs:inline">Instagram</span>
+</a>
+</div>
 
-    <!-- Botones flotantes premium -->
-    <div class="fixed bottom-24 md:bottom-8 right-4 z-50 animate-float flex flex-col gap-3">
-        <a href="#diagnostico" class="btn-primary px-5 py-3 md:px-7 md:py-3.5 rounded-2xl shadow-neon transition flex items-center gap-2.5 hover:shadow-glow text-sm font-semibold group">
-            <i class="fa-solid fa-calendar-check text-lg"></i> 
-            <span class="hidden xs:inline">Pedir Turno</span>
-            <i class="fa-solid fa-arrow-right ml-1 group-hover:translate-x-1 transition-transform"></i>
-        </a>
-        <!-- Botón flotante de reseñas -->
-        <a href="https://maps.app.goo.gl/SituF9nKKug41SYq7" target="_blank" rel="noopener noreferrer" class="btn-review px-4 py-2.5 md:px-5 md:py-3 rounded-xl shadow-lg transition flex items-center gap-2 text-xs md:text-sm font-semibold group animate-float" style="animation-delay: 0.5s;">
-            <i class="fa-solid fa-star text-lg"></i> 
-            <span class="hidden xs:inline">Deja tu Reseña</span>
-        </a>
-    </div>
+<!-- HERO SECTION-->
+<header class="relative pt-20 pb-20 md:pt-28 md:pb-28 lg:pt-36 lg:pb-32 min-h-screen flex items-center overflow-hidden">
+<!-- Fondo con gradiente y partículas-->
+<div class="absolute inset-0 bg-gradient-to-br from-primary-dark via-[#0D1525] to-[#0A1220]">
+<div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(circle at 20% 35%, rgba(0, 217, 255, 0.15) 0%, transparent 40%), radial-gradient(circle at 80% 70%, rgba(0, 102, 255, 0.12) 0%, transparent 45%)"></div>
+</div>
+<div id="parallax-container" class="absolute inset-0 overflow-hidden">
+<img id="parallax-img" src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=1974&auto=format&fit=crop" alt="Tecnología automotriz avanzada" class="parallax-image w-full h-full object-cover opacity-35 parallax-bg">
+<div class="absolute inset-0 bg-gradient-to-t from-primary-dark via-primary-dark/80 to-transparent"></div>
+</div>
+<div class="container mx-auto px-4 md:px-6 relative z-10 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+<div class="space-y-6 md:space-y-8 max-w-2xl">
+<div class="fade-in-up" style="animation-delay: 0.1s;">
+<div class="inline-flex items-center gap-2 bg-primary-cyan/15 border border-primary-cyan/30 text-primary-cyan px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider backdrop-blur-sm">
+<i class="fa-solid fa-microchip"></i> Diagnóstico de Precisión
+</div>
+</div>
+<h1 class="font-display font-black text-4xl md:text-5xl lg:text-7xl leading-tight glow-text main-title fade-in-up" style="animation-delay: 0.2s;">
+DIAGNÓSTICO Y<br>
+<span class="gradient-text">MANTENIMIENTO INTEGRAL</span>
+</h1>
+<p class="text-gray-300/90 text-base md:text-lg max-w-xl description-text fade-in-up leading-relaxed" style="animation-delay: 0.3s;">
+Tu vehículo habla. Nosotros escuchamos con tecnología de punta. Pre-carga síntomas y recibe un diagnóstico preciso antes de visitar nuestro taller.
+</p>
+<!-- Stats animados-->
+<div class="grid grid-cols-3 gap-3 md:gap-5 pt-2 md:pt-4 fade-in-up" style="animation-delay: 0.5s;">
+<div class="text-center p-3 rounded-xl bg-white/5 border border-white/10 hover:border-primary-cyan/30 transition">
+<span class="block text-2xl md:text-3xl font-bold gradient-text"><span id="counter1" data-target="99">0</span>%</span>
+<span class="text-xs text-gray-400 mt-1 block">Precisión</span>
+</div>
+<div class="text-center p-3 rounded-xl bg-white/5 border border-white/10 hover:border-primary-cyan/30 transition">
+<span class="block text-2xl md:text-3xl font-bold gradient-text"><span id="counter2" data-target="50">0</span>min</span>
+<span class="text-xs text-gray-400 mt-1 block">Ahorro</span>
+</div>
+<div class="text-center p-3 rounded-xl bg-white/5 border border-white/10 hover:border-primary-cyan/30 transition">
+<span class="block text-2xl md:text-3xl font-bold gradient-text"><span id="counter3" data-target="8000">0</span>+</span>
+<span class="text-xs text-gray-400 mt-1 block">Vehículos</span>
+</div>
+</div>
+<!-- CTAs-->
+<div class="flex flex-col sm:flex-row gap-3.5 pt-2 fade-in-up" style="animation-delay: 0.6s;">
+<a href="#diagnostico" class="btn-primary px-6 py-3.5 rounded-xl uppercase tracking-wide flex items-center justify-center gap-2.5 group text-sm font-semibold shadow-neon">
+Iniciar Diagnóstico <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+</a>
+<a href="#asesoramiento" class="btn-outline px-6 py-3.5 rounded-xl uppercase tracking-wide flex items-center justify-center gap-2 text-sm font-semibold">
+<i class="fa-solid fa-book-open text-primary-cyan"></i> Guías Técnicas
+</a>
+</div>
+</div>
+<!-- Imagen destacada con efecto flotante-->
+<div class="hidden lg:block relative fade-in-up" style="animation-delay: 0.4s;">
+<div class="relative">
+<div class="absolute inset-4 bg-gradient-to-r from-primary-cyan/20 to-primary-blue/20 rounded-3xl blur-2xl opacity-60 animate-pulse-slow"></div>
+<img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=1600&auto=format&fit=crop" alt="Técnico especializado con equipo de diagnóstico" class="relative rounded-2xl shadow-2xl border border-white/10 transform hover:scale-[1.02] transition duration-500 hover-glow">
+<!-- Badge flotante -->
+<div class="absolute top-4 right-4 glass-card px-4 py-2.5 rounded-xl flex items-center gap-2 animate-float">
+<i class="fa-solid fa-shield-check text-primary-cyan"></i>
+<span class="text-sm font-semibold">Certificado</span>
+</div>
+</div>
+</div>
+</div>
+</header>
 
-    <!-- HERO SECTION -->
-    <header class="relative pt-20 pb-20 md:pt-28 md:pb-28 lg:pt-36 lg:pb-32 min-h-screen flex items-center overflow-hidden">
-        <!-- Fondo con gradiente y partículas -->
-        <div class="absolute inset-0 bg-gradient-to-br from-primary-dark via-[#0D1525] to-[#0A1220]">
-            <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(circle at 20% 35%, rgba(0, 217, 255, 0.15) 0%, transparent 40%), radial-gradient(circle at 80% 70%, rgba(0, 102, 255, 0.12) 0%, transparent 45%)"></div>
-        </div>
-        
-        <div id="parallax-container" class="absolute inset-0 overflow-hidden">
-            <img id="parallax-img" src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=1974&auto=format&fit=crop" alt="Tecnología automotriz avanzada" class="parallax-image w-full h-full object-cover opacity-35 parallax-bg">
-            <div class="absolute inset-0 bg-gradient-to-t from-primary-dark via-primary-dark/80 to-transparent"></div>
-        </div>
-        
-        <div class="container mx-auto px-4 md:px-6 relative z-10 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-            <div class="space-y-6 md:space-y-8 max-w-2xl">
-                <div class="fade-in-up" style="animation-delay: 0.1s;">
-                    <div class="inline-flex items-center gap-2 bg-primary-cyan/15 border border-primary-cyan/30 text-primary-cyan px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider backdrop-blur-sm">
-                        <i class="fa-solid fa-microchip"></i> Diagnóstico de Precisión
-                    </div>
-                </div>
-                <h1 class="font-display font-black text-4xl md:text-5xl lg:text-7xl leading-tight glow-text main-title fade-in-up" style="animation-delay: 0.2s;">
-                    DIAGNÓSTICO Y <br>
-                    <span class="gradient-text">MANTENIMIENTO INTEGRAL</span>
-                </h1>
-                <p class="text-gray-300/90 text-base md:text-lg max-w-xl description-text fade-in-up leading-relaxed" style="animation-delay: 0.3s;">
-                    Tu vehículo habla. Nosotros escuchamos con tecnología de punta. Pre-carga síntomas y recibe un diagnóstico preciso antes de visitar nuestro taller.
-                </p>
-                
-                <!-- Stats animados -->
-                <div class="grid grid-cols-3 gap-3 md:gap-5 pt-2 md:pt-4 fade-in-up" style="animation-delay: 0.5s;">
-                    <div class="text-center p-3 rounded-xl bg-white/5 border border-white/10 hover:border-primary-cyan/30 transition">
-                        <span class="block text-2xl md:text-3xl font-bold gradient-text"><span id="counter1" data-target="99">0</span>%</span>
-                        <span class="text-xs text-gray-400 mt-1 block">Precisión</span>
-                    </div>
-                    <div class="text-center p-3 rounded-xl bg-white/5 border border-white/10 hover:border-primary-cyan/30 transition">
-                        <span class="block text-2xl md:text-3xl font-bold gradient-text"><span id="counter2" data-target="50">0</span>min</span>
-                        <span class="text-xs text-gray-400 mt-1 block">Ahorro</span>
-                    </div>
-                    <div class="text-center p-3 rounded-xl bg-white/5 border border-white/10 hover:border-primary-cyan/30 transition">
-                        <span class="block text-2xl md:text-3xl font-bold gradient-text"><span id="counter3" data-target="8000">0</span>+</span>
-                        <span class="text-xs text-gray-400 mt-1 block">Vehículos</span>
-                    </div>
-                </div>
-                
-                <!-- CTAs -->
-                <div class="flex flex-col sm:flex-row gap-3.5 pt-2 fade-in-up" style="animation-delay: 0.6s;">
-                    <a href="#diagnostico" class="btn-primary px-6 py-3.5 rounded-xl uppercase tracking-wide flex items-center justify-center gap-2.5 group text-sm font-semibold shadow-neon">
-                        Iniciar Diagnóstico 
-                        <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
-                    </a>
-                    <a href="#asesoramiento" class="btn-outline px-6 py-3.5 rounded-xl uppercase tracking-wide flex items-center justify-center gap-2 text-sm font-semibold">
-                        <i class="fa-solid fa-book-open text-primary-cyan"></i> Guías Técnicas
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Imagen destacada con efecto flotante -->
-            <div class="hidden lg:block relative fade-in-up" style="animation-delay: 0.4s;">
-                <div class="relative">
-                    <div class="absolute -inset-4 bg-gradient-to-r from-primary-cyan/20 to-primary-blue/20 rounded-3xl blur-2xl opacity-60 animate-pulse-slow"></div>
-                    <img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=1600&auto=format&fit=crop" 
-                         alt="Técnico especializado con equipo de diagnóstico" 
-                         class="relative rounded-2xl shadow-2xl border border-white/10 transform hover:scale-[1.02] transition duration-500 hover-glow">
-                    
-                    <!-- Badge flotante -->
-                    <div class="absolute -top-4 -right-4 glass-card px-4 py-2.5 rounded-xl flex items-center gap-2 animate-float">
-                        <i class="fa-solid fa-shield-check text-primary-cyan"></i>
-                        <span class="text-sm font-semibold">Certificado</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
+<!-- SECCIÓN: CENTRO DE ASESORAMIENTO-->
+<section id="asesoramiento" class="py-16 md:py-24 bg-[#0D1525] relative">
+<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(0,102,255,0.08),_transparent_60%)]"></div>
+<div class="container mx-auto px-4 relative z-10">
+<div class="text-center mb-14 md:mb-20 max-w-3xl mx-auto">
+<div class="inline-block bg-primary-blue/15 border border-primary-blue/30 text-primary-cyan px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-5">
+<i class="fa-solid fa-lightbulb mr-1.5"></i> Conocimiento Técnico
+</div>
+<h2 class="font-display font-bold text-4xl md:text-5xl gradient-text uppercase mb-5 glow-text tracking-tight">Centro de Asesoramiento</h2>
+<p class="text-gray-400/90 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
+Detecta fallas en etapas tempranas y evita reparaciones costosas. Aprende a identificar las señales clave de tu vehículo.
+</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-7">
+<!-- Card 1-->
+<div class="glass-card hover-lift">
+<div class="relative h-44 md:h-48 overflow-hidden rounded-t-2xl">
+<img src="https://placehold.co/600x400/00D9FF/0A0F1A?text=FRENOS" alt="Sistema de frenos" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+<div class="absolute inset-0 bg-gradient-to-t from-primary-dark/90 to-transparent"></div>
+<div class="absolute bottom-3 left-4">
+<span class="text-xs font-bold text-primary-cyan uppercase tracking-wider">Predictivo</span>
+</div>
+</div>
+<div class="p-5 md:p-6">
+<h3 class="font-bold text-lg md:text-xl text-white mb-2.5">Señales en Frenos</h3>
+<p class="text-gray-400/90 text-sm mb-4 leading-relaxed">Chillidos, vibración en pedal o recorrido excesivo: indicadores de desgaste en pastillas o aire en el circuito.</p>
+<a href="#diagnostico" class="text-primary-cyan hover:text-cyan-300 font-semibold text-sm flex items-center gap-1.5 group">
+Analizar ahora
+<i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+</a>
+</div>
+</div>
+<!-- Card 2-->
+<div class="glass-card hover-lift">
+<div class="relative h-44 md:h-48 overflow-hidden rounded-t-2xl">
+<img src="https://placehold.co/600x400/1E2A3A/00D9FF?text=BATERIA" alt="Sistema eléctrico" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+<div class="absolute inset-0 bg-gradient-to-t from-primary-dark/90 to-transparent"></div>
+<div class="absolute bottom-3 left-4">
+<span class="text-xs font-bold text-primary-cyan uppercase tracking-wider">Preventivo</span>
+</div>
+</div>
+<div class="p-5 md:p-6">
+<h3 class="font-bold text-lg md:text-xl text-white mb-2.5">Batería y Alternador</h3>
+<p class="text-gray-400/90 text-sm mb-4 leading-relaxed">Arranque lento, luces tenues o parpadeantes: verifica voltaje y estado de carga antes de una falla total.</p>
+<a href="#diagnostico" class="text-primary-cyan hover:text-cyan-300 font-semibold text-sm flex items-center gap-1.5 group">
+Verificar sistema
+<i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+</a>
+</div>
+</div>
+<!-- Card 3-->
+<div class="glass-card hover-lift">
+<div class="relative h-44 md:h-48 overflow-hidden rounded-t-2xl">
+<img src="https://placehold.co/600x400/0066FF/0A0F1A?text=FLUIDOS" alt="Fluidos críticos" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+<div class="absolute inset-0 bg-gradient-to-t from-primary-dark/90 to-transparent"></div>
+<div class="absolute bottom-3 left-4">
+<span class="text-xs font-bold text-primary-cyan uppercase tracking-wider">Mantenimiento</span>
+</div>
+</div>
+<div class="p-5 md:p-6">
+<h3 class="font-bold text-lg md:text-xl text-white mb-2.5">Fluidos Críticos</h3>
+<p class="text-gray-400/90 text-sm mb-4 leading-relaxed">Aceite, refrigerante y líquido de frenos: niveles bajos o cambios de color indican urgencia de revisión.</p>
+<a href="#diagnostico" class="text-primary-cyan hover:text-cyan-300 font-semibold text-sm flex items-center gap-1.5 group">
+Revisar niveles
+<i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+</a>
+</div>
+</div>
+</div>
+<div class="text-center mt-10 md:mt-14">
+<a href="#diagnostico" class="inline-flex items-center gap-2.5 bg-white/5 hover:bg-white/10 border border-white/15 hover:border-primary-cyan/40 text-white font-bold py-3.5 px-7 md:px-9 rounded-2xl transition-all uppercase tracking-wide text-sm shadow-soft hover:shadow-neon">
+<i class="fa-solid fa-hand-pointer text-primary-cyan"></i> Iniciar Pre-Diagnóstico Ahora
+</a>
+</div>
+</div>
+</section>
 
-    <!-- SECCIÓN: CENTRO DE ASESORAMIENTO -->
-    <section id="asesoramiento" class="py-16 md:py-24 bg-[#0D1525] relative">
-        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(0,102,255,0.08),_transparent_60%)]"></div>
-        <div class="container mx-auto px-4 relative z-10">
-            <div class="text-center mb-14 md:mb-20 max-w-3xl mx-auto">
-                <div class="inline-block bg-primary-blue/15 border border-primary-blue/30 text-primary-cyan px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-5">
-                    <i class="fa-solid fa-lightbulb mr-1.5"></i> Conocimiento Técnico
-                </div>
-                <h2 class="font-display font-bold text-4xl md:text-5xl gradient-text uppercase mb-5 glow-text tracking-tight">Centro de Asesoramiento</h2>
-                <p class="text-gray-400/90 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
-                    Detecta fallas en etapas tempranas y evita reparaciones costosas. Aprende a identificar las señales clave de tu vehículo.
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-7">
-                <!-- Card 1 -->
-                <div class="glass-card hover-lift">
-                    <div class="relative h-44 md:h-48 overflow-hidden rounded-t-2xl">
-                        <img src="https://placehold.co/600x400/00D9FF/0A0F1A?text=FRENOS" alt="Sistema de frenos" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/90 to-transparent"></div>
-                        <div class="absolute bottom-3 left-4">
-                            <span class="text-xs font-bold text-primary-cyan uppercase tracking-wider">Predictivo</span>
-                        </div>
-                    </div>
-                    <div class="p-5 md:p-6">
-                        <h3 class="font-bold text-lg md:text-xl text-white mb-2.5">Señales en Frenos</h3>
-                        <p class="text-gray-400/90 text-sm mb-4 leading-relaxed">Chillidos, vibración en pedal o recorrido excesivo: indicadores de desgaste en pastillas o aire en el circuito.</p>
-                        <a href="#diagnostico" class="text-primary-cyan hover:text-cyan-300 font-semibold text-sm flex items-center gap-1.5 group">
-                            Analizar ahora 
-                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Card 2 -->
-                <div class="glass-card hover-lift">
-                    <div class="relative h-44 md:h-48 overflow-hidden rounded-t-2xl">
-                        <img src="https://placehold.co/600x400/1E2A3A/00D9FF?text=BATERIA" alt="Sistema eléctrico" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/90 to-transparent"></div>
-                        <div class="absolute bottom-3 left-4">
-                            <span class="text-xs font-bold text-primary-cyan uppercase tracking-wider">Preventivo</span>
-                        </div>
-                    </div>
-                    <div class="p-5 md:p-6">
-                        <h3 class="font-bold text-lg md:text-xl text-white mb-2.5">Batería y Alternador</h3>
-                        <p class="text-gray-400/90 text-sm mb-4 leading-relaxed">Arranque lento, luces tenues o parpadeantes: verifica voltaje y estado de carga antes de una falla total.</p>
-                        <a href="#diagnostico" class="text-primary-cyan hover:text-cyan-300 font-semibold text-sm flex items-center gap-1.5 group">
-                            Verificar sistema 
-                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Card 3 -->
-                <div class="glass-card hover-lift">
-                    <div class="relative h-44 md:h-48 overflow-hidden rounded-t-2xl">
-                        <img src="https://placehold.co/600x400/0066FF/0A0F1A?text=FLUIDOS" alt="Fluidos críticos" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/90 to-transparent"></div>
-                        <div class="absolute bottom-3 left-4">
-                            <span class="text-xs font-bold text-primary-cyan uppercase tracking-wider">Mantenimiento</span>
-                        </div>
-                    </div>
-                    <div class="p-5 md:p-6">
-                        <h3 class="font-bold text-lg md:text-xl text-white mb-2.5">Fluidos Críticos</h3>
-                        <p class="text-gray-400/90 text-sm mb-4 leading-relaxed">Aceite, refrigerante y líquido de frenos: niveles bajos o cambios de color indican urgencia de revisión.</p>
-                        <a href="#diagnostico" class="text-primary-cyan hover:text-cyan-300 font-semibold text-sm flex items-center gap-1.5 group">
-                            Revisar niveles 
-                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="text-center mt-10 md:mt-14">
-                <a href="#diagnostico" class="inline-flex items-center gap-2.5 bg-white/5 hover:bg-white/10 border border-white/15 hover:border-primary-cyan/40 text-white font-bold py-3.5 px-7 md:px-9 rounded-2xl transition-all uppercase tracking-wide text-sm shadow-soft hover:shadow-neon">
-                    <i class="fa-solid fa-hand-pointer text-primary-cyan"></i> Iniciar Pre-Diagnóstico Ahora
-                </a>
-            </div>
-        </div>
-    </section>
+<!-- SECCIÓN: SERVICIOS INTEGRALES-->
+<section class="py-16 md:py-24 bg-primary-dark relative">
+<div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at 10% 20%, rgba(0, 217, 255, 0.08) 0%, transparent 25%), radial-gradient(circle at 90% 80%, rgba(0, 102, 255, 0.08) 0%, transparent 25%)"></div>
+<div class="container mx-auto px-4 relative z-10">
+<div class="text-center mb-14 md:mb-20">
+<div class="inline-block bg-primary-cyan/15 border border-primary-cyan/30 text-primary-cyan px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-5">
+<i class="fa-solid fa-screwdriver-wrench mr-1.5"></i> Soluciones Profesionales
+</div>
+<h2 class="font-display font-bold text-4xl md:text-5xl text-white uppercase mb-4 glow-text tracking-tight">Servicios<span class="gradient-text">Integrales</span></h2>
+<p class="text-gray-400/90 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
+Tecnología avanzada y expertise técnico para mantener tu vehículo en condiciones óptimas de seguridad y rendimiento.
+</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+<!-- Servicio 1-->
+<div class="glass-card p-6 md:p-7 hover-lift group">
+<div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-cyan/20 to-primary-blue/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+<i class="fa-solid fa-laptop-code text-2xl md:text-3xl text-primary-cyan"></i>
+</div>
+<h3 class="font-bold text-xl text-white mb-2.5">Diagnóstico Computarizado</h3>
+<p class="text-gray-400/90 text-sm leading-relaxed">Escaneo avanzado de ECU, sensores y sistemas electrónicos con equipos de última generación.</p>
+</div>
+<!-- Servicio 2-->
+<div class="glass-card p-6 md:p-7 hover-lift group">
+<div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-cyan/20 to-primary-blue/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+<i class="fa-solid fa-oil-can text-2xl md:text-3xl text-primary-cyan"></i>
+</div>
+<h3 class="font-bold text-xl text-white mb-2.5">Mecánica Ligera</h3>
+<p class="text-gray-400/90 text-sm leading-relaxed">Cambios de aceite, filtros, bujías y services programados con repuestos de calidad certificada.</p>
+</div>
+<!-- Servicio 3-->
+<div class="glass-card p-6 md:p-7 hover-lift group">
+<div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-cyan/20 to-primary-blue/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+<i class="fa-solid fa-circle-stop text-2xl md:text-3xl text-primary-cyan"></i>
+</div>
+<h3 class="font-bold text-xl text-white mb-2.5">Sistema de Frenos</h3>
+<p class="text-gray-400/90 text-sm leading-relaxed">Revisión integral de ABS, pastillas, discos y líquido de frenos para máxima seguridad.</p>
+</div>
+<!-- Servicio 4-->
+<div class="glass-card p-6 md:p-7 hover-lift group">
+<div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-cyan/20 to-primary-blue/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+<i class="fa-solid fa-car-burst text-2xl md:text-3xl text-primary-cyan"></i>
+</div>
+<h3 class="font-bold text-xl text-white mb-2.5">Suspensión y Dirección</h3>
+<p class="text-gray-400/90 text-sm leading-relaxed">Amortiguadores, rótulas, alineación y balanceo para confort y estabilidad en ruta.</p>
+</div>
+<!-- Servicio 5-->
+<div class="glass-card p-6 md:p-7 hover-lift group">
+<div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-cyan/20 to-primary-blue/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+<i class="fa-solid fa-snowflake text-2xl md:text-3xl text-primary-cyan"></i>
+</div>
+<h3 class="font-bold text-xl text-white mb-2.5">Climatización</h3>
+<p class="text-gray-400/90 text-sm leading-relaxed">Carga de gas, limpieza de conductos y reparación de compresores para confort térmico.</p>
+</div>
+<!-- Servicio 6-->
+<div class="glass-card p-6 md:p-7 hover-lift group">
+<div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-cyan/20 to-primary-blue/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+<i class="fa-solid fa-bolt text-2xl md:text-3xl text-primary-cyan"></i>
+</div>
+<h3 class="font-bold text-xl text-white mb-2.5">Electricidad Automotriz</h3>
+<p class="text-gray-400/90 text-sm leading-relaxed">Diagnóstico de fallas eléctricas, baterías, alternadores y sistemas de iluminación.</p>
+</div>
+</div>
+</div>
+</section>
 
-    <!-- SECCIÓN: SERVICIOS INTEGRALES -->
-    <section class="py-16 md:py-24 bg-primary-dark relative">
-        <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at 10% 20%, rgba(0, 217, 255, 0.08) 0%, transparent 25%), radial-gradient(circle at 90% 80%, rgba(0, 102, 255, 0.08) 0%, transparent 25%)"></div>
-        <div class="container mx-auto px-4 relative z-10">
-            <div class="text-center mb-14 md:mb-20">
-                <div class="inline-block bg-primary-cyan/15 border border-primary-cyan/30 text-primary-cyan px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-5">
-                    <i class="fa-solid fa-screwdriver-wrench mr-1.5"></i> Soluciones Profesionales
-                </div>
-                <h2 class="font-display font-bold text-4xl md:text-5xl text-white uppercase mb-4 glow-text tracking-tight">Servicios <span class="gradient-text">Integrales</span></h2>
-                <p class="text-gray-400/90 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
-                    Tecnología avanzada y expertise técnico para mantener tu vehículo en condiciones óptimas de seguridad y rendimiento.
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
-                <!-- Servicio 1 -->
-                <div class="glass-card p-6 md:p-7 hover-lift group">
-                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-cyan/20 to-primary-blue/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-laptop-code text-2xl md:text-3xl text-primary-cyan"></i>
-                    </div>
-                    <h3 class="font-bold text-xl text-white mb-2.5">Diagnóstico Computarizado</h3>
-                    <p class="text-gray-400/90 text-sm leading-relaxed">Escaneo avanzado de ECU, sensores y sistemas electrónicos con equipos de última generación.</p>
-                </div>
-                
-                <!-- Servicio 2 -->
-                <div class="glass-card p-6 md:p-7 hover-lift group">
-                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-cyan/20 to-primary-blue/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-oil-can text-2xl md:text-3xl text-primary-cyan"></i>
-                    </div>
-                    <h3 class="font-bold text-xl text-white mb-2.5">Mecánica Ligera</h3>
-                    <p class="text-gray-400/90 text-sm leading-relaxed">Cambios de aceite, filtros, bujías y services programados con repuestos de calidad certificada.</p>
-                </div>
-                
-                <!-- Servicio 3 -->
-                <div class="glass-card p-6 md:p-7 hover-lift group">
-                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-cyan/20 to-primary-blue/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-circle-stop text-2xl md:text-3xl text-primary-cyan"></i>
-                    </div>
-                    <h3 class="font-bold text-xl text-white mb-2.5">Sistema de Frenos</h3>
-                    <p class="text-gray-400/90 text-sm leading-relaxed">Revisión integral de ABS, pastillas, discos y líquido de frenos para máxima seguridad.</p>
-                </div>
-                
-                <!-- Servicio 4 -->
-                <div class="glass-card p-6 md:p-7 hover-lift group">
-                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-cyan/20 to-primary-blue/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-car-burst text-2xl md:text-3xl text-primary-cyan"></i>
-                    </div>
-                    <h3 class="font-bold text-xl text-white mb-2.5">Suspensión y Dirección</h3>
-                    <p class="text-gray-400/90 text-sm leading-relaxed">Amortiguadores, rótulas, alineación y balanceo para confort y estabilidad en ruta.</p>
-                </div>
-                
-                <!-- Servicio 5 -->
-                <div class="glass-card p-6 md:p-7 hover-lift group">
-                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-cyan/20 to-primary-blue/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-snowflake text-2xl md:text-3xl text-primary-cyan"></i>
-                    </div>
-                    <h3 class="font-bold text-xl text-white mb-2.5">Climatización</h3>
-                    <p class="text-gray-400/90 text-sm leading-relaxed">Carga de gas, limpieza de conductos y reparación de compresores para confort térmico.</p>
-                </div>
-                
-                <!-- Servicio 6 -->
-                <div class="glass-card p-6 md:p-7 hover-lift group">
-                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-cyan/20 to-primary-blue/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-bolt text-2xl md:text-3xl text-primary-cyan"></i>
-                    </div>
-                    <h3 class="font-bold text-xl text-white mb-2.5">Electricidad Automotriz</h3>
-                    <p class="text-gray-400/90 text-sm leading-relaxed">Diagnóstico de fallas eléctricas, baterías, alternadores y sistemas de iluminación.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- SECCIÓN: TESTIMONIOS-->
+<section class="py-16 md:py-24 bg-[#0D1525] border-t border-white/5">
+<div class="container mx-auto px-4">
+<div class="text-center mb-10 md:mb-14">
+<div class="inline-block bg-primary-cyan/15 border border-primary-cyan/30 text-primary-cyan px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-5">
+<i class="fa-solid fa-comments mr-1.5"></i> Experiencias Reales
+</div>
+<h2 class="font-display font-bold text-4xl md:text-5xl text-white uppercase glow-text tracking-tight">La Voz de Nuestros Clientes</h2>
+<p class="text-gray-400/90 max-w-2xl mx-auto mt-4 text-base md:text-lg leading-relaxed">
+Confianza construida sobre resultados verificables y atención profesional.
+</p>
+</div>
+<div class="testimonial-carousel flex gap-5 md:gap-6 overflow-x-auto pb-6 snap-x snap-mandatory scrollbar-hide mx-2 px-2">
+<!-- Testimonio 1-->
+<div class="testimonial-card glass-card p-6 md:p-7 rounded-2xl border-t-4 border-primary-cyan hover-lift transition flex-shrink-0 w-[85%] md:w-1/3 snap-center">
+<div class="flex justify-between items-start mb-4">
+<div class="flex text-yellow-400 text-lg">
+<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+</div>
+<i class="fa-solid fa-quote-right text-3xl text-gray-700/70"></i>
+</div>
+<p class="text-gray-300/95 italic mb-5 leading-relaxed text-sm">"Diagnóstico preciso en minutos. La tecnología que usan es impresionante y me explicaron todo con claridad."</p>
+<div class="flex items-center pt-3 border-t border-white/10">
+<div class="w-11 h-11 rounded-full bg-gradient-to-br from-primary-cyan to-primary-blue flex items-center justify-center text-primary-dark font-bold mr-3.5 flex-shrink-0">MP</div>
+<div>
+<p class="font-bold text-white text-sm">Martín P.</p>
+<p class="text-xs text-gray-500">Chevrolet Tracker 2023</p>
+</div>
+</div>
+</div>
+<!-- Testimonio 2-->
+<div class="testimonial-card glass-card p-6 md:p-7 rounded-2xl border-t-4 border-primary-cyan hover-lift transition flex-shrink-0 w-[85%] md:w-1/3 snap-center">
+<div class="flex justify-between items-start mb-4">
+<div class="flex text-yellow-400 text-lg">
+<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+</div>
+<i class="fa-solid fa-quote-right text-3xl text-gray-700/70"></i>
+</div>
+<p class="text-gray-300/95 italic mb-5 leading-relaxed text-sm">"Proceso transparente y rápido. El pre-diagnóstico online me ahorró tiempo y dinero. Totalmente recomendado."</p>
+<div class="flex items-center pt-3 border-t border-white/10">
+<div class="w-11 h-11 rounded-full bg-gradient-to-br from-primary-cyan to-primary-blue flex items-center justify-center text-primary-dark font-bold mr-3.5 flex-shrink-0">AR</div>
+<div>
+<p class="font-bold text-white text-sm">Alejandra R.</p>
+<p class="text-xs text-gray-500">Renault Fluence</p>
+</div>
+</div>
+</div>
+<!-- Testimonio 3-->
+<div class="testimonial-card glass-card p-6 md:p-7 rounded-2xl border-t-4 border-primary-cyan hover-lift transition flex-shrink-0 w-[85%] md:w-1/3 snap-center">
+<div class="flex justify-between items-start mb-4">
+<div class="flex text-yellow-400 text-lg">
+<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+</div>
+<i class="fa-solid fa-quote-right text-3xl text-gray-700/70"></i>
+</div>
+<p class="text-gray-300/95 italic mb-5 leading-relaxed text-sm">"Excelente para gestionar la flota de mi empresa. Reportes detallados y atención personalizada."</p>
+<div class="flex items-center pt-3 border-t border-white/10">
+<div class="w-11 h-11 rounded-full bg-gradient-to-br from-primary-cyan to-primary-blue flex items-center justify-center text-primary-dark font-bold mr-3.5 flex-shrink-0">EC</div>
+<div>
+<p class="font-bold text-white text-sm">Esteban C.</p>
+<p class="text-xs text-gray-500">Flota Utilitarios</p>
+</div>
+</div>
+</div>
+<p class="text-center text-gray-500 mt-5 text-sm flex items-center justify-center gap-1.5">
+<i class="fa-solid fa-arrow-right text-primary-cyan"></i> Desliza para más opiniones
+</p>
+</div>
+</section>
 
-    <!-- SECCIÓN: TESTIMONIOS -->
-    <section class="py-16 md:py-24 bg-[#0D1525] border-t border-white/5">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-10 md:mb-14">
-                <div class="inline-block bg-primary-cyan/15 border border-primary-cyan/30 text-primary-cyan px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-5">
-                    <i class="fa-solid fa-comments mr-1.5"></i> Experiencias Reales
-                </div>
-                <h2 class="font-display font-bold text-4xl md:text-5xl text-white uppercase glow-text tracking-tight">La Voz de Nuestros Clientes</h2>
-                <p class="text-gray-400/90 max-w-2xl mx-auto mt-4 text-base md:text-lg leading-relaxed">
-                    Confianza construida sobre resultados verificables y atención profesional.
-                </p>
-            </div>
-            
-            <div class="testimonial-carousel flex gap-5 md:gap-6 overflow-x-auto pb-6 snap-x snap-mandatory scrollbar-hide -mx-2 px-2">
-                <!-- Testimonio 1 -->
-                <div class="testimonial-card glass-card p-6 md:p-7 rounded-2xl border-t-4 border-primary-cyan hover-lift transition flex-shrink-0 w-[85%] md:w-1/3 snap-center">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="flex text-yellow-400 text-lg">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                        </div>
-                        <i class="fa-solid fa-quote-right text-3xl text-gray-700/70"></i>
-                    </div>
-                    <p class="text-gray-300/95 italic mb-5 leading-relaxed text-sm">"Diagnóstico preciso en minutos. La tecnología que usan es impresionante y me explicaron todo con claridad."</p>
-                    <div class="flex items-center pt-3 border-t border-white/10">
-                        <div class="w-11 h-11 rounded-full bg-gradient-to-br from-primary-cyan to-primary-blue flex items-center justify-center text-primary-dark font-bold mr-3.5 flex-shrink-0">MP</div>
-                        <div>
-                            <p class="font-bold text-white text-sm">Martín P.</p>
-                            <p class="text-xs text-gray-500">Chevrolet Tracker 2023</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Testimonio 2 -->
-                <div class="testimonial-card glass-card p-6 md:p-7 rounded-2xl border-t-4 border-primary-cyan hover-lift transition flex-shrink-0 w-[85%] md:w-1/3 snap-center">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="flex text-yellow-400 text-lg">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
-                        </div>
-                        <i class="fa-solid fa-quote-right text-3xl text-gray-700/70"></i>
-                    </div>
-                    <p class="text-gray-300/95 italic mb-5 leading-relaxed text-sm">"Proceso transparente y rápido. El pre-diagnóstico online me ahorró tiempo y dinero. Totalmente recomendado."</p>
-                    <div class="flex items-center pt-3 border-t border-white/10">
-                        <div class="w-11 h-11 rounded-full bg-gradient-to-br from-primary-cyan to-primary-blue flex items-center justify-center text-primary-dark font-bold mr-3.5 flex-shrink-0">AR</div>
-                        <div>
-                            <p class="font-bold text-white text-sm">Alejandra R.</p>
-                            <p class="text-xs text-gray-500">Renault Fluence</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Testimonio 3 -->
-                <div class="testimonial-card glass-card p-6 md:p-7 rounded-2xl border-t-4 border-primary-cyan hover-lift transition flex-shrink-0 w-[85%] md:w-1/3 snap-center">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="flex text-yellow-400 text-lg">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                        </div>
-                        <i class="fa-solid fa-quote-right text-3xl text-gray-700/70"></i>
-                    </div>
-                    <p class="text-gray-300/95 italic mb-5 leading-relaxed text-sm">"Excelente para gestionar la flota de mi empresa. Reportes detallados y atención personalizada."</p>
-                    <div class="flex items-center pt-3 border-t border-white/10">
-                        <div class="w-11 h-11 rounded-full bg-gradient-to-br from-primary-cyan to-primary-blue flex items-center justify-center text-primary-dark font-bold mr-3.5 flex-shrink-0">EC</div>
-                        <div>
-                            <p class="font-bold text-white text-sm">Esteban C.</p>
-                            <p class="text-xs text-gray-500">Flota Utilitarios</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <p class="text-center text-gray-500 mt-5 text-sm flex items-center justify-center gap-1.5">
-                <i class="fa-solid fa-arrow-right text-primary-cyan"></i> Desliza para más opiniones
-            </p>
-        </div>
-    </section>
+<!-- SECCIÓN: FORMULARIO DE DIAGNÓSTICO-->
+<section id="diagnostico" class="py-16 md:py-24 bg-gradient-to-b from-primary-dark to-[#080D16] relative overflow-hidden">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_60%_40%,rgba(0,217,255,0.08),transparent_55%)]"></div>
+<div class="container mx-auto px-4 relative z-10">
+<div class="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
+<!-- Columna informativa-->
+<div class="lg:w-1/3 space-y-6">
+<h2 class="font-display font-bold text-4xl md:text-5xl text-white mb-2 glow-text tracking-tight">
+ACELERADOR DE<br>
+<span class="gradient-text">DIAGNÓSTICO</span>
+</h2>
+<p class="text-gray-400/90 mb-6 text-base leading-relaxed">
+Completa el formulario y nuestros técnicos prepararán el análisis previo antes de tu llegada. Optimizamos tu tiempo y recursos.
+</p>
+<div class="space-y-5 pt-2">
+<div class="flex items-start gap-4">
+<div class="bg-gradient-to-br from-primary-cyan/20 to-primary-blue/20 p-3.5 rounded-xl text-primary-cyan flex-shrink-0">
+<i class="fa-solid fa-stopwatch text-xl"></i>
+</div>
+<div>
+<h4 class="font-bold text-white text-base mb-1">Ahorro de Tiempo</h4>
+<p class="text-gray-400/90 text-sm">Evita esperas innecesarias. Tu caso ya estará en análisis al llegar.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="bg-gradient-to-br from-primary-cyan/20 to-primary-blue/20 p-3.5 rounded-xl text-primary-cyan flex-shrink-0">
+<i class="fa-solid fa-file-waveform text-xl"></i>
+</div>
+<div>
+<h4 class="font-bold text-white text-base mb-1">Análisis Previo</h4>
+<p class="text-gray-400/90 text-sm">Preparamos herramientas y repuestos específicos para tu caso.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="bg-gradient-to-br from-primary-cyan/20 to-primary-blue/20 p-3.5 rounded-xl text-primary-cyan flex-shrink-0">
+<i class="fa-solid fa-shield-halved text-xl"></i>
+</div>
+<div>
+<h4 class="font-bold text-white text-base mb-1">Transparencia Total</h4>
+<p class="text-gray-400/90 text-sm">Recibirás un informe detallado con opciones de reparación y costos.</p>
+</div>
+</div>
+</div>
+<!-- Badge de confianza-->
+<div class="glass-card p-4 rounded-xl mt-4 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center flex-shrink-0">
+<i class="fa-solid fa-check text-green-400"></i>
+</div>
+<div>
+<p class="text-sm font-semibold text-white">Datos 100% seguros</p>
+<p class="text-xs text-gray-500">Tu información está protegida</p>
+</div>
+</div>
+</div>
+<!-- Formulario-->
+<div class="lg:w-2/3 glass-card rounded-3xl shadow-card p-6 md:p-8 w-full">
+<form id="triageForm" class="space-y-7">
+<!-- Sección 1: Vehículo-->
+<div class="border-b border-white/10 pb-5">
+<h3 class="text-lg font-bold text-white mb-5 flex items-center gap-3">
+<span class="bg-gradient-to-r from-primary-cyan to-primary-blue text-primary-dark w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">1</span>
+Datos del Vehículo
+</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="relative">
+<input type="text" id="inputVehicle" placeholder="Marca y Modelo" class="input-modern w-full bg-transparent p-4 rounded-xl outline-none text-sm" required>
+<label class="absolute left-4 top-2.5 bg-primary-dark px-2 text-xs text-primary-cyan font-medium">Vehículo*</label>
+</div>
+<div class="relative">
+<input type="number" id="inputKm" placeholder="Kilometraje" class="input-modern w-full bg-transparent p-4 rounded-xl outline-none text-sm" required>
+<label class="absolute left-4 top-2.5 bg-primary-dark px-2 text-xs text-primary-cyan font-medium">Kilometraje*</label>
+</div>
+<div class="relative">
+<select id="inputFuelType" class="input-modern w-full bg-transparent p-4 rounded-xl outline-none text-sm appearance-none" required>
+<option value="" disabled selected>Tipo de combustible...</option>
+<option value="Naftero">Naftero(Gasolina)</option>
+<option value="Diesel">Diesel</option>
+<option value="Híbrido">Híbrido</option>
+<option value="Eléctrico">Eléctrico</option>
+</select>
+<label class="absolute left-4 top-2.5 bg-primary-dark px-2 text-xs text-primary-cyan font-medium">Combustible*</label>
+<i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-xs pointer-events-none"></i>
+</div>
+</div>
+</div>
+<!-- Sección 2: Síntomas-->
+<div class="border-b border-white/10 pb-5">
+<h3 class="text-lg font-bold text-white mb-5 flex items-center gap-3">
+<span class="bg-gradient-to-r from-primary-cyan to-primary-blue text-primary-dark w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">2</span>
+Descripción de Fallas
+</h3>
+<div class="relative mb-4">
+<textarea id="inputSymptoms" rows="3" placeholder="Describe ruidos, olores, vibraciones, luces de alerta..." class="input-modern w-full bg-transparent p-4 rounded-xl outline-none text-sm resize-none" required></textarea>
+<label class="absolute left-4 top-2.5 bg-primary-dark px-2 text-xs text-primary-cyan font-medium">Síntomas*</label>
+</div>
+<div class="relative">
+<select id="inputContext" class="input-modern w-full bg-transparent p-4 rounded-xl outline-none text-sm appearance-none">
+<option value="" disabled selected>Contexto de la falla...</option>
+<optgroup label="🔋 ARRANQUE Y ENERGÍA" class="text-gray-300">
+<option value="no_arranca_gira">Gira pero no arranca</option>
+<option value="no_arranca_nada">No da contacto</option>
+<option value="arranca_lento">Arranque lento o difícil</option>
+</optgroup>
+<optgroup label="⚙ RENDIMIENTO" class="text-gray-300 mt-2">
+<option value="falla_ralenti">Inestabilidad en ralentí</option>
+<option value="pierde_potencia">Pérdida de potencia</option>
+<option value="consumo_excesivo">Consumo excesivo de combustible</option>
+<option value="humo_escape">Humo en escape(color)</option>
+</optgroup>
+<optgroup label="🔊 RUIDOS Y VIBRACIONES" class="text-gray-300 mt-2">
+<option value="ruido_frenar">Ruido al frenar</option>
+<option value="ruido_direccion">Ruido al girar dirección</option>
+<option value="vibracion_alta">Vibración en alta velocidad</option>
+<option value="ruido_motor">Ruido anormal en motor</option>
+</optgroup>
+<optgroup label="🌡 TEMPERATURA Y FLUIDOS" class="text-gray-300 mt-2">
+<option value="levanta_temp">Se calienta el motor</option>
+<option value="perdida_fluido">Pérdida de fluido visible</option>
+</optgroup>
+<option value="falla_frio">Solo falla en frío</option>
+<option value="falla_caliente">Solo falla en caliente</option>
+<option value="falla_intermitente">Falla intermitente</option>
+</select>
+<label class="absolute left-4 top-2.5 bg-primary-dark px-2 text-xs text-primary-cyan font-medium">Contexto</label>
+<i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-xs pointer-events-none"></i>
+</div>
+</div>
+<!-- Sección 3: Contacto-->
+<div>
+<h3 class="text-lg font-bold text-white mb-5 flex items-center gap-3">
+<span class="bg-gradient-to-r from-primary-cyan to-primary-blue text-primary-dark w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">3</span>
+Datos de Contacto
+</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="relative">
+<input type="text" id="inputName" placeholder="Tu nombre completo" class="input-modern w-full bg-transparent p-4 rounded-xl outline-none text-sm" required>
+<label class="absolute left-4 top-2.5 bg-primary-dark px-2 text-xs text-primary-cyan font-medium">Nombre*</label>
+</div>
+<div class="relative">
+<input type="tel" id="inputPhone" placeholder="WhatsApp para contacto" class="input-modern w-full bg-transparent p-4 rounded-xl outline-none text-sm">
+<label class="absolute left-4 top-2.5 bg-primary-dark px-2 text-xs text-primary-cyan font-medium">WhatsApp</label>
+</div>
+</div>
+<p class="text-xs text-gray-500 mt-3 flex items-center gap-1.5">
+<i class="fa-solid fa-lock text-primary-cyan"></i> Tus datos se usarán únicamente para coordinar tu turno
+</p>
+</div>
+<!-- Botón de envío-->
+<button type="submit" class="btn-primary w-full font-bold uppercase text-base py-4.5 rounded-2xl hover:shadow-neon transition flex items-center justify-center gap-3 mt-2">
+<i class="fa-brands fa-whatsapp text-2xl"></i> Enviar Solicitud a AUTOTECNICA SERVICIOS
+</button>
+<p class="text-center text-xs text-gray-500 pt-2">
+Al enviar, aceptas nuestros <a href="#" class="text-primary-cyan hover:underline">términos de servicio</a>
+</p>
+</form>
+</div>
+</div>
+</div>
+</section>
 
-    <!-- SECCIÓN: FORMULARIO DE DIAGNÓSTICO -->
-    <section id="diagnostico" class="py-16 md:py-24 bg-gradient-to-b from-primary-dark to-[#080D16] relative overflow-hidden">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_60%_40%,rgba(0,217,255,0.08),transparent_55%)]"></div>
-        <div class="container mx-auto px-4 relative z-10">
-            <div class="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
-                <!-- Columna informativa -->
-                <div class="lg:w-1/3 space-y-6">
-                    <h2 class="font-display font-bold text-4xl md:text-5xl text-white mb-2 glow-text tracking-tight">
-                        ACELERADOR DE <br>
-                        <span class="gradient-text">DIAGNÓSTICO</span>
-                    </h2>
-                    <p class="text-gray-400/90 mb-6 text-base leading-relaxed">
-                        Completa el formulario y nuestros técnicos prepararán el análisis previo antes de tu llegada. Optimizamos tu tiempo y recursos.
-                    </p>
-                    
-                    <div class="space-y-5 pt-2">
-                        <div class="flex items-start gap-4">
-                            <div class="bg-gradient-to-br from-primary-cyan/20 to-primary-blue/20 p-3.5 rounded-xl text-primary-cyan flex-shrink-0">
-                                <i class="fa-solid fa-stopwatch text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-white text-base mb-1">Ahorro de Tiempo</h4>
-                                <p class="text-gray-400/90 text-sm">Evita esperas innecesarias. Tu caso ya estará en análisis al llegar.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <div class="bg-gradient-to-br from-primary-cyan/20 to-primary-blue/20 p-3.5 rounded-xl text-primary-cyan flex-shrink-0">
-                                <i class="fa-solid fa-file-waveform text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-white text-base mb-1">Análisis Previo</h4>
-                                <p class="text-gray-400/90 text-sm">Preparamos herramientas y repuestos específicos para tu caso.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <div class="bg-gradient-to-br from-primary-cyan/20 to-primary-blue/20 p-3.5 rounded-xl text-primary-cyan flex-shrink-0">
-                                <i class="fa-solid fa-shield-halved text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-white text-base mb-1">Transparencia Total</h4>
-                                <p class="text-gray-400/90 text-sm">Recibirás un informe detallado con opciones de reparación y costos.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Badge de confianza -->
-                    <div class="glass-card p-4 rounded-xl mt-4 flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center flex-shrink-0">
-                            <i class="fa-solid fa-check text-green-400"></i>
-                        </div>
-                        <div>
-                            <p class="text-sm font-semibold text-white">Datos 100% seguros</p>
-                            <p class="text-xs text-gray-500">Tu información está protegida</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Formulario -->
-                <div class="lg:w-2/3 glass-card rounded-3xl shadow-card p-6 md:p-8 w-full">
-                    <form id="triageForm" class="space-y-7">
-                        <!-- Sección 1: Vehículo -->
-                        <div class="border-b border-white/10 pb-5">
-                            <h3 class="text-lg font-bold text-white mb-5 flex items-center gap-3">
-                                <span class="bg-gradient-to-r from-primary-cyan to-primary-blue text-primary-dark w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">1</span> 
-                                Datos del Vehículo
-                            </h3>
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                <div class="relative">
-                                    <input type="text" id="inputVehicle" placeholder="Marca y Modelo" class="input-modern w-full bg-transparent p-4 rounded-xl outline-none text-sm" required>
-                                    <label class="absolute left-4 -top-2.5 bg-primary-dark px-2 text-xs text-primary-cyan font-medium">Vehículo *</label>
-                                </div>
-                                <div class="relative">
-                                    <input type="number" id="inputKm" placeholder="Kilometraje" class="input-modern w-full bg-transparent p-4 rounded-xl outline-none text-sm" required>
-                                    <label class="absolute left-4 -top-2.5 bg-primary-dark px-2 text-xs text-primary-cyan font-medium">Kilometraje *</label>
-                                </div>
-                                <div class="relative">
-                                    <select id="inputFuelType" class="input-modern w-full bg-transparent p-4 rounded-xl outline-none text-sm appearance-none" required>
-                                        <option value="" disabled selected>Tipo de combustible...</option>
-                                        <option value="Naftero">Naftero (Gasolina)</option>
-                                        <option value="Diesel">Diesel</option>
-                                        <option value="Híbrido">Híbrido</option>
-                                        <option value="Eléctrico">Eléctrico</option>
-                                    </select>
-                                    <label class="absolute left-4 -top-2.5 bg-primary-dark px-2 text-xs text-primary-cyan font-medium">Combustible *</label>
-                                    <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-xs pointer-events-none"></i>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Sección 2: Síntomas -->
-                        <div class="border-b border-white/10 pb-5">
-                            <h3 class="text-lg font-bold text-white mb-5 flex items-center gap-3">
-                                <span class="bg-gradient-to-r from-primary-cyan to-primary-blue text-primary-dark w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">2</span> 
-                                Descripción de Fallas
-                            </h3>
-                            <div class="relative mb-4">
-                                <textarea id="inputSymptoms" rows="3" placeholder="Describe ruidos, olores, vibraciones, luces de alerta..." class="input-modern w-full bg-transparent p-4 rounded-xl outline-none text-sm resize-none" required></textarea>
-                                <label class="absolute left-4 -top-2.5 bg-primary-dark px-2 text-xs text-primary-cyan font-medium">Síntomas *</label>
-                            </div>
-                            <div class="relative">
-                                <select id="inputContext" class="input-modern w-full bg-transparent p-4 rounded-xl outline-none text-sm appearance-none">
-                                    <option value="" disabled selected>Contexto de la falla...</option>
-                                    <optgroup label="🔋 ARRANQUE Y ENERGÍA" class="text-gray-300">
-                                        <option value="no_arranca_gira">Gira pero no arranca</option>
-                                        <option value="no_arranca_nada">No da contacto</option>
-                                        <option value="arranca_lento">Arranque lento o difícil</option>
-                                    </optgroup>
-                                    <optgroup label="⚙️ RENDIMIENTO" class="text-gray-300 mt-2">
-                                        <option value="falla_ralenti">Inestabilidad en ralentí</option>
-                                        <option value="pierde_potencia">Pérdida de potencia</option>
-                                        <option value="consumo_excesivo">Consumo excesivo de combustible</option>
-                                        <option value="humo_escape">Humo en escape (color)</option>
-                                    </optgroup>
-                                    <optgroup label="🔊 RUIDOS Y VIBRACIONES" class="text-gray-300 mt-2">
-                                        <option value="ruido_frenar">Ruido al frenar</option>
-                                        <option value="ruido_direccion">Ruido al girar dirección</option>
-                                        <option value="vibracion_alta">Vibración en alta velocidad</option>
-                                        <option value="ruido_motor">Ruido anormal en motor</option>
-                                    </optgroup>
-                                    <optgroup label="🌡️ TEMPERATURA Y FLUIDOS" class="text-gray-300 mt-2">
-                                        <option value="levanta_temp">Se calienta el motor</option>
-                                        <option value="perdida_fluido">Pérdida de fluido visible</option>
-                                    </optgroup>
-                                    <option value="falla_frio">Solo falla en frío</option>
-                                    <option value="falla_caliente">Solo falla en caliente</option>
-                                    <option value="falla_intermitente">Falla intermitente</option>
-                                </select>
-                                <label class="absolute left-4 -top-2.5 bg-primary-dark px-2 text-xs text-primary-cyan font-medium">Contexto</label>
-                                <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-xs pointer-events-none"></i>
-                            </div>
-                        </div>
-                        
-                        <!-- Sección 3: Contacto -->
-                        <div>
-                            <h3 class="text-lg font-bold text-white mb-5 flex items-center gap-3">
-                                <span class="bg-gradient-to-r from-primary-cyan to-primary-blue text-primary-dark w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">3</span> 
-                                Datos de Contacto
-                            </h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div class="relative">
-                                    <input type="text" id="inputName" placeholder="Tu nombre completo" class="input-modern w-full bg-transparent p-4 rounded-xl outline-none text-sm" required>
-                                    <label class="absolute left-4 -top-2.5 bg-primary-dark px-2 text-xs text-primary-cyan font-medium">Nombre *</label>
-                                </div>
-                                <div class="relative">
-                                    <input type="tel" id="inputPhone" placeholder="WhatsApp para contacto" class="input-modern w-full bg-transparent p-4 rounded-xl outline-none text-sm">
-                                    <label class="absolute left-4 -top-2.5 bg-primary-dark px-2 text-xs text-primary-cyan font-medium">WhatsApp</label>
-                                </div>
-                            </div>
-                            <p class="text-xs text-gray-500 mt-3 flex items-center gap-1.5">
-                                <i class="fa-solid fa-lock text-primary-cyan"></i> Tus datos se usarán únicamente para coordinar tu turno
-                            </p>
-                        </div>
-                        
-                        <!-- Botón de envío -->
-                        <button type="submit" class="btn-primary w-full font-bold uppercase text-base py-4.5 rounded-2xl hover:shadow-neon transition flex items-center justify-center gap-3 mt-2">
-                            <i class="fa-brands fa-whatsapp text-2xl"></i> Enviar Solicitud a Taller FC mecanica
-                        </button>
-                        
-                        <p class="text-center text-xs text-gray-500 pt-2">
-                            Al enviar, aceptas nuestros <a href="#" class="text-primary-cyan hover:underline">términos de servicio</a>
-                        </p>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- SECCIÓN: UBICACIÓN Y CONFIANZA-->
+<section class="py-14 md:py-20 bg-[#0D1525] border-t border-white/5">
+<div class="container mx-auto px-4 text-center">
+<!-- Logos de marcas(grayscale to color on hover)-->
+<div class="flex flex-wrap justify-center gap-8 md:gap-12 opacity-70 grayscale hover:grayscale-0 transition-all duration-500 mb-12 md:mb-16">
+<i class="fa-brands fa-toyota text-4xl md:text-5xl hover:text-white transition-colors"></i>
+<i class="fa-solid fa-car text-4xl md:text-5xl hover:text-white transition-colors"></i>
+<i class="fa-brands fa-honda text-4xl md:text-5xl hover:text-white transition-colors"></i>
+<i class="fa-brands fa-ford text-4xl md:text-5xl hover:text-white transition-colors"></i>
+<i class="fa-brands fa-volkswagen text-4xl md:text-5xl hover:text-white transition-colors"></i>
+<i class="fa-solid fa-truck-pickup text-4xl md:text-5xl hover:text-white transition-colors"></i>
+</div>
+<!-- Card de ubicación-->
+<div class="glass-card rounded-3xl p-6 md:p-10 max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
+<div class="text-left max-w-md">
+<h3 class="font-display font-bold text-2xl md:text-3xl text-white mb-2">¿Dónde estamos?</h3>
+<p class="text-gray-400/90 mb-4 text-base">Visítanos para validación final y reparaciones especializadas.</p>
+<div class="flex items-start gap-3 text-gray-300/90 text-sm">
+<i class="fa-regular fa-clock text-primary-cyan text-xl mt-0.5 flex-shrink-0"></i>
+<div>
+<p class="font-medium">Horarios de atención:</p>
+<p>Lunes a Viernes: 09:30 - 18:30</p>
+<p>Sábado y Domingo: Cerrado</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row gap-3">
+<a href="https://maps.app.goo.gl/9rA49BQ85gNBEEcN9" target="_blank" rel="noopener noreferrer" class="btn-primary px-6 py-3.5 md:px-8 md:py-4 rounded-2xl font-bold hover:shadow-neon transition flex items-center gap-3 text-sm md:text-base whitespace-nowrap shadow-soft">
+<i class="fa-solid fa-map-location-dot text-lg"></i> Ver en Google Maps
+</a>
+<!-- BOTÓN DE RESEÑAS-->
+<a href="https://maps.app.goo.gl/9rA49BQ85gNBEEcN9" target="_blank" rel="noopener noreferrer" class="btn-review px-6 py-3.5 md:px-8 md:py-4 rounded-2xl font-bold hover:shadow-neon transition flex items-center gap-3 text-sm md:text-base whitespace-nowrap shadow-soft">
+<i class="fa-solid fa-star text-lg"></i> Deja tu Reseña
+</a>
+</div>
+</div>
+<!-- Badge de garantía-->
+<div class="mt-10 inline-flex items-center gap-3 bg-white/5 border border-white/10 px-5 py-3 rounded-full">
+<i class="fa-solid fa-certificate text-primary-cyan text-lg"></i>
+<span class="text-sm font-medium text-gray-300">Garantía en todos nuestros servicios</span>
+</div>
+</div>
+</section>
 
-    <!-- SECCIÓN: UBICACIÓN Y CONFIANZA -->
-    <section class="py-14 md:py-20 bg-[#0D1525] border-t border-white/5">
-        <div class="container mx-auto px-4 text-center">
-            <!-- Logos de marcas (grayscale to color on hover) -->
-            <div class="flex flex-wrap justify-center gap-8 md:gap-12 opacity-70 grayscale hover:grayscale-0 transition-all duration-500 mb-12 md:mb-16">
-                <i class="fa-brands fa-toyota text-4xl md:text-5xl hover:text-white transition-colors"></i>
-                <i class="fa-solid fa-car text-4xl md:text-5xl hover:text-white transition-colors"></i>
-                <i class="fa-brands fa-honda text-4xl md:text-5xl hover:text-white transition-colors"></i>
-                <i class="fa-brands fa-ford text-4xl md:text-5xl hover:text-white transition-colors"></i>
-                <i class="fa-brands fa-volkswagen text-4xl md:text-5xl hover:text-white transition-colors"></i>
-                <i class="fa-solid fa-truck-pickup text-4xl md:text-5xl hover:text-white transition-colors"></i>
-            </div>
-            
-            <!-- Card de ubicación -->
-            <div class="glass-card rounded-3xl p-6 md:p-10 max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
-                <div class="text-left max-w-md">
-                    <h3 class="font-display font-bold text-2xl md:text-3xl text-white mb-2">¿Dónde estamos?</h3>
-                    <p class="text-gray-400/90 mb-4 text-base">Visítanos para validación final y reparaciones especializadas.</p>
-                    <div class="flex items-start gap-3 text-gray-300/90 text-sm">
-                        <i class="fa-regular fa-clock text-primary-cyan text-xl mt-0.5 flex-shrink-0"></i>
-                        <div>
-                            <p class="font-medium">Horarios de atención:</p>
-                            <p>Lunes a Viernes: 08:00 - 20:00</p>
-                            <p>Sábado: 09:30 - 13:30 | Domingo: Cerrado</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex flex-col sm:flex-row gap-3">
-                    <a href="https://maps.app.goo.gl/SituF9nKKug41SYq7" target="_blank" rel="noopener noreferrer" class="btn-primary px-6 py-3.5 md:px-8 md:py-4 rounded-2xl font-bold hover:shadow-neon transition flex items-center gap-3 text-sm md:text-base whitespace-nowrap shadow-soft">
-                        <i class="fa-solid fa-map-location-dot text-lg"></i> Ver en Google Maps
-                    </a>
-                    <!-- BOTÓN DE RESEÑAS -->
-                    <a href="https://maps.app.goo.gl/SituF9nKKug41SYq7" target="_blank" rel="noopener noreferrer" class="btn-review px-6 py-3.5 md:px-8 md:py-4 rounded-2xl font-bold hover:shadow-neon transition flex items-center gap-3 text-sm md:text-base whitespace-nowrap shadow-soft">
-                        <i class="fa-solid fa-star text-lg"></i> Deja tu Reseña
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Badge de garantía -->
-            <div class="mt-10 inline-flex items-center gap-3 bg-white/5 border border-white/10 px-5 py-3 rounded-full">
-                <i class="fa-solid fa-certificate text-primary-cyan text-lg"></i>
-                <span class="text-sm font-medium text-gray-300">Garantía en todos nuestros servicios</span>
-            </div>
-        </div>
-    </section>
+<!-- FOOTER-->
+<footer class="bg-primary-dark/95 text-gray-500 py-10 md:py-14 border-t border-white/10">
+<div class="container mx-auto px-4">
+<div class="flex flex-col md:flex-row items-center justify-between gap-6">
+<div class="text-center md:text-left">
+<p class="mb-2 text-white font-display font-bold text-xl md:text-2xl glow-text tracking-tight">AUTOTECNICA SERVICIOS</p>
+<p class="text-sm">Diagnóstico Automotriz Profesional</p>
+</div>
+<!-- Footer minimalista con redes sociales-->
+<div class="flex items-center gap-4">
+<!-- Botón de reseñas-->
+<a href="https://maps.app.goo.gl/9rA49BQ85gNBEEcN9" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-primary-cyan hover:text-yellow-400 transition text-sm font-semibold group">
+<i class="fa-solid fa-star group-hover:scale-110 transition-transform"></i>
+<span>Deja tu Reseña</span>
+</a>
+<!-- Botón de Instagram-->
+<a href="https://www.instagram.com/autotecnicaservicios/?hl=es" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-primary-cyan hover:text-pink-400 transition text-sm font-semibold group">
+<i class="fa-brands fa-instagram group-hover:scale-110 transition-transform"></i>
+<span>Instagram</span>
+</a>
+</div>
+</div>
+<div class="border-t border-white/10 mt-8 pt-6 text-center text-sm">
+<p>&copy; <span id="current-year">2025</span> AUTOTECNICA SERVICIOS. Todos los derechos reservados.</p>
+<p class="text-gray-600 mt-1 text-xs">Sitio web desarrollado con tecnología moderna</p>
+</div>
+</div>
+</footer>
 
-    <!-- FOOTER -->
-    <footer class="bg-primary-dark/95 text-gray-500 py-10 md:py-14 border-t border-white/10">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-                <div class="text-center md:text-left">
-                    <p class="mb-2 text-white font-display font-bold text-xl md:text-2xl glow-text tracking-tight">Taller FC mecanica</p>
-                    <p class="text-sm">Diagnóstico Automotriz Profesional</p>
-                </div>
-                <!-- Footer minimalista sin redes sociales -->
-                <div class="flex items-center gap-4">
-                    <!-- Solo botón de reseñas -->
-                    <a href="https://maps.app.goo.gl/SituF9nKKug41SYq7" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-primary-cyan hover:text-yellow-400 transition text-sm font-semibold group">
-                        <i class="fa-solid fa-star group-hover:scale-110 transition-transform"></i>
-                        <span>Deja tu Reseña</span>
-                    </a>
-                </div>
-            </div>
-            <div class="border-t border-white/10 mt-8 pt-6 text-center text-sm">
-                <p>&copy; <span id="current-year">2025</span> Taller FC mecanica. Todos los derechos reservados.</p>
-                <p class="text-gray-600 mt-1 text-xs">Sitio web desarrollado con tecnología moderna</p>
-            </div>
-        </div>
-    </footer>
+<!-- STICKY MOBILE CTA-->
+<div class="fixed bottom-0 left-0 w-full bg-gray-900/95 backdrop-blur-sm border-t border-white/10 p-4 md:hidden z-50 flex gap-3">
+<a href="#asesoramiento" class="flex-1 bg-white/5 text-white font-semibold py-3.5 rounded-xl text-center border border-white/10 hover:border-primary-cyan/40 transition text-sm flex items-center justify-center gap-2">
+<i class="fa-solid fa-book-open text-primary-cyan"></i>Guías
+</a>
+<a href="#diagnostico" class="flex-[2] btn-primary font-bold py-3.5 rounded-xl text-center uppercase shadow-neon text-sm flex items-center justify-center gap-2">
+<i class="fa-solid fa-microchip"></i> Diagnóstico
+</a>
+</div>
 
-    <!-- STICKY MOBILE CTA -->
-    <div class="fixed bottom-0 left-0 w-full bg-gray-900/95 backdrop-blur-sm border-t border-white/10 p-4 md:hidden z-50 flex gap-3">
-        <a href="#asesoramiento" class="flex-1 bg-white/5 text-white font-semibold py-3.5 rounded-xl text-center border border-white/10 hover:border-primary-cyan/40 transition text-sm flex items-center justify-center gap-2">
-            <i class="fa-solid fa-book-open text-primary-cyan"></i>Guías
-        </a>
-        <a href="#diagnostico" class="flex-[2] btn-primary font-bold py-3.5 rounded-xl text-center uppercase shadow-neon text-sm flex items-center justify-center gap-2">
-            <i class="fa-solid fa-microchip"></i> Diagnóstico
-        </a>
-    </div>
+<!-- JAVASCRIPT FUNCIONAL-->
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+// Actualizar año en footer
+document.getElementById('current-year').textContent= new Date().getFullYear();
 
-    <!-- JAVASCRIPT FUNCIONAL -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Actualizar año en footer
-            document.getElementById('current-year').textContent = new Date().getFullYear();
-            
-            // Generar partículas decorativas
-            function createParticles() {
-                const container = document.getElementById('particles');
-                if (!container) return;
-                
-                for (let i = 0; i < 25; i++) {
-                    const particle = document.createElement('div');
-                    particle.className = 'particle';
-                    particle.style.left = Math.random() * 100 + '%';
-                    particle.style.animationDelay = Math.random() * 15 + 's';
-                    particle.style.animationDuration = (15 + Math.random() * 20) + 's';
-                    particle.style.width = particle.style.height = (2 + Math.random() * 3) + 'px';
-                    container.appendChild(particle);
-                }
-            }
-            createParticles();
-            
-            // Verificar estado de apertura (horarios actualizados)
-            function checkStatus() {
-                const now = new Date();
-                const hours = now.getHours();
-                const minutes = now.getMinutes();
-                const day = now.getDay(); // 0 = Domingo, 1 = Lunes, ..., 6 = Sábado
-                
-                // Convertir a horas decimales para comparación precisa
-                const currentTime = hours + minutes / 60;
-                
-                let isOpen = false;
-                
-                // Lunes a Viernes (1-5): 08:00 a 20:00
-                if (day >= 1 && day <= 5) {
-                    isOpen = currentTime >= 8 && currentTime < 20;
-                }
-                // Sábado (6): 09:30 a 13:30
-                else if (day === 6) {
-                    isOpen = currentTime >= 9.5 && currentTime < 13.5;
-                }
-                // Domingo (0): Cerrado
-                
-                // Elementos desktop
-                const dotDesktop = document.getElementById('status-dot-desktop');
-                const textDesktop = document.getElementById('status-text-desktop');
-                
-                // Elementos mobile
-                const barMobile = document.getElementById('status-bar-mobile');
-                
-                if (isOpen) {
-                    // Estado ABIERTO
-                    dotDesktop.className = 'status-dot w-2 h-2 rounded-full mr-2.5 bg-primary-cyan';
-                    textDesktop.textContent = 'Abierto Ahora';
-                    textDesktop.className = 'text-primary-cyan font-semibold';
-                    
-                    barMobile.textContent = '🟢 Abierto Ahora - Atención Inmediata';
-                    barMobile.className = 'md:hidden w-full py-2 text-center text-xs font-bold uppercase tracking-wide text-white bg-gradient-to-r from-primary-cyan/20 to-primary-blue/20';
-                } else {
-                    // Estado CERRADO
-                    dotDesktop.className = 'w-2 h-2 rounded-full mr-2.5 bg-gray-500';
-                    textDesktop.textContent = 'Cerrado';
-                    textDesktop.className = 'text-gray-400';
-                    
-                    // Mostrar próximo horario de apertura
-                    let nextOpen = '';
-                    if (day === 0) {
-                        // Domingo: abre lunes 08:00
-                        nextOpen = 'Abre Lunes 08:00';
-                    } else if (day === 6) {
-                        // Sábado: si ya pasó las 13:30, abre lunes
-                        if (currentTime >= 13.5) {
-                            nextOpen = 'Abre Lunes 08:00';
-                        } else if (currentTime < 9.5) {
-                            nextOpen = 'Abre hoy 09:30';
-                        }
-                    } else {
-                        // Lunes a Viernes
-                        if (currentTime >= 20) {
-                            nextOpen = day === 5 ? 'Abre Sábado 09:30' : 'Abre mañana 08:00';
-                        } else if (currentTime < 8) {
-                            nextOpen = 'Abre hoy 08:00';
-                        }
-                    }
-                    
-                    barMobile.textContent = `🔴 Cerrado - ${nextOpen}`;
-                    barMobile.className = 'md:hidden w-full py-2 text-center text-xs font-bold uppercase tracking-wide text-gray-300 bg-gray-900/80';
-                }
-            }
-            
-            // Animación de contadores
-            function animateCounter(id, start, target, duration) {
-                const obj = document.getElementById(id);
-                if (!obj) return;
-                
-                let startTimestamp = null;
-                const step = (timestamp) => {
-                    if (!startTimestamp) startTimestamp = timestamp;
-                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                    const easeProgress = 1 - Math.pow(1 - progress, 3);
-                    
-                    const value = Math.floor(easeProgress * (target - start) + start);
-                    obj.textContent = Math.abs(value);
-                    
-                    if (progress < 1) {
-                        window.requestAnimationFrame(step);
-                    } else {
-                        obj.textContent = Math.abs(target);
-                    }
-                };
-                window.requestAnimationFrame(step);
-            }
-            
-            function startCounters() {
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            animateCounter('counter1', 0, 99, 1200);
-                            animateCounter('counter2', 0, 50, 1400);
-                            animateCounter('counter3', 0, 8000, 1600);
-                            observer.disconnect();
-                        }
-                    });
-                }, { threshold: 0.3 });
-                
-                const statsSection = document.querySelector('.grid.grid-cols-3');
-                if (statsSection) observer.observe(statsSection);
-            }
-            
-            // Validación de inputs
-            const inputs = document.querySelectorAll('.input-modern');
-            inputs.forEach(input => {
-                input.addEventListener('input', function() {
-                    if (this.value.trim().length > 2) {
-                        this.classList.add('input-valid');
-                        this.classList.remove('input-invalid');
-                    } else {
-                        this.classList.remove('input-valid', 'input-invalid');
-                    }
-                });
-                
-                input.addEventListener('blur', function() {
-                    if (this.hasAttribute('required') && this.value.trim().length < 3) {
-                        this.classList.add('input-invalid');
-                    }
-                });
-            });
-            
-            // Manejo del formulario
-            document.getElementById('triageForm')?.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const btn = e.target.querySelector('button[type="submit"]');
-                const originalBtnContent = btn.innerHTML;
-                
-                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Procesando solicitud...';
-                btn.classList.add('opacity-80', 'cursor-not-allowed');
-                btn.disabled = true;
-                
-                const vehicle = document.getElementById('inputVehicle').value || 'No especificado';
-                const km = document.getElementById('inputKm').value || 'No especificado';
-                const fuelType = document.getElementById('inputFuelType').value || 'No especificado';
-                const symptoms = document.getElementById('inputSymptoms').value || 'No especificado';
-                const contextSelect = document.getElementById('inputContext');
-                const context = contextSelect.options[contextSelect.selectedIndex]?.text || 'No especificado';
-                const name = document.getElementById('inputName').value || 'Cliente';
-                const phone = document.getElementById('inputPhone').value || 'No proporcionado';
-                
-                // Mensaje para WhatsApp con el nuevo nombre y número
-                const message = `🚗 *¡Hola Taller FC mecanica!* 👋\n\n📛 *Cliente:* ${name}\n📱 *Contacto:* ${phone}\n\n🚘 *Vehículo:* ${vehicle}\n🛣️ *Kilometraje:* ${km} km\n⛽ *Combustible:* ${fuelType}\n\n⚠️ *Síntomas reportados:*\n${symptoms}\n\n🔍 *Contexto:* ${context}\n\n📅 *Solicito turno para diagnóstico profesional.* 💨`;
-                
-                // URL de WhatsApp con el nuevo número formateado para Argentina
-                const whatsappUrl = `https://api.whatsapp.com/send?phone=+542346686720&text=${encodeURIComponent(message)}`;
-                
-                setTimeout(() => {
-                    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
-                    
-                    btn.innerHTML = '<i class="fa-solid fa-circle-check"></i> ¡Solicitud Enviada! ✅';
-                    btn.classList.add('bg-green-600');
-                    
-                    setTimeout(() => {
-                        btn.innerHTML = originalBtnContent;
-                        btn.classList.remove('opacity-80', 'cursor-not-allowed', 'bg-green-600');
-                        btn.disabled = false;
-                        e.target.reset();
-                        document.querySelectorAll('.input-modern').forEach(el => {
-                            el.classList.remove('input-valid', 'input-invalid');
-                        });
-                    }, 3500);
-                }, 1200);
-            });
-            
-            // Efecto parallax
-            const parallaxImg = document.getElementById('parallax-img');
-            if (parallaxImg) {
-                window.addEventListener('scroll', () => {
-                    const scrollY = window.scrollY;
-                    if (scrollY < window.innerHeight) {
-                        parallaxImg.style.transform = `translateY(${scrollY * 0.25}px) scale(1.05)`;
-                    }
-                }, { passive: true });
-            }
-            
-            // Efecto navbar al hacer scroll
-            const navbar = document.getElementById('navbar');
-            if (navbar) {
-                window.addEventListener('scroll', () => {
-                    if (window.scrollY > 50) {
-                        navbar.classList.add('shadow-lg', 'bg-gray-900/95');
-                        navbar.classList.remove('glass');
-                    } else {
-                        navbar.classList.remove('shadow-lg', 'bg-gray-900/95');
-                        navbar.classList.add('glass');
-                    }
-                }, { passive: true });
-            }
-            
-            // Inicialización
-            checkStatus();
-            setInterval(checkStatus, 60000);
-            startCounters();
-            
-            document.querySelectorAll('.fade-in-up').forEach((el, i) => {
-                el.style.animationDelay = `${0.1 + i * 0.12}s`;
-            });
-            
-            // Smooth scroll para anclas
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-        });
-    </script>
+// Generar partículas decorativas
+function createParticles(){
+const container= document.getElementById('particles');
+if(!container) return;
+for(let i=0; i<25; i++){
+const particle= document.createElement('div');
+particle.className='particle';
+particle.style.left= Math.random()*100+'%';
+particle.style.animationDelay= Math.random()*15+'s';
+particle.style.animationDuration=(15+ Math.random()*20)+'s';
+particle.style.width= particle.style.height=(2+ Math.random()*3)+'px';
+container.appendChild(particle);
+}
+}
+createParticles();
+
+// Verificar estado de apertura(horarios actualizados: L-V 09:30-18:30, S-D Cerrado)
+function checkStatus(){
+const now= new Date();
+const hours= now.getHours();
+const minutes= now.getMinutes();
+const day= now.getDay();// 0= Domingo, 1= Lunes,..., 6= Sábado
+
+// Convertir a horas decimales para comparación precisa
+const currentTime= hours+ minutes/60;
+let isOpen= false;
+
+// Lunes a Viernes(1-5): 09:30 a 18:30
+if(day>=1 && day<=5){
+isOpen= currentTime>=9.5 && currentTime<18.5;
+}
+// Sábado(6) y Domingo(0): Cerrado
+else{
+isOpen= false;
+}
+
+// Elementos desktop
+const dotDesktop= document.getElementById('status-dot-desktop');
+const textDesktop= document.getElementById('status-text-desktop');
+
+// Elementos mobile
+const barMobile= document.getElementById('status-bar-mobile');
+
+if(isOpen){
+// Estado ABIERTO
+dotDesktop.className='status-dot w-2 h-2 rounded-full mr-2.5 bg-primary-cyan';
+textDesktop.textContent='Abierto Ahora';
+textDesktop.className='text-primary-cyan font-semibold';
+barMobile.textContent='🟢 Abierto Ahora - Atención Inmediata';
+barMobile.className='md:hidden w-full py-2 text-center text-xs font-bold uppercase tracking-wide text-white bg-gradient-to-r from-primary-cyan/20 to-primary-blue/20';
+} else{
+// Estado CERRADO
+dotDesktop.className='w-2 h-2 rounded-full mr-2.5 bg-gray-500';
+textDesktop.textContent='Cerrado';
+textDesktop.className='text-gray-400';
+
+// Mostrar próximo horario de apertura
+let nextOpen='';
+if(day===0){// Domingo: abre lunes 09:30
+nextOpen='Abre Lunes 09:30';
+} else if(day===6){// Sábado: abre lunes
+nextOpen='Abre Lunes 09:30';
+} else{// Lunes a Viernes
+if(currentTime>=18.5){
+nextOpen='Abre mañana 09:30';
+} else if(currentTime<9.5){
+nextOpen='Abre hoy 09:30';
+}
+}
+barMobile.textContent=`🔴 Cerrado - ${nextOpen}`;
+barMobile.className='md:hidden w-full py-2 text-center text-xs font-bold uppercase tracking-wide text-gray-300 bg-gray-900/80';
+}
+}
+
+// Animación de contadores
+function animateCounter(id, start, target, duration){
+const obj= document.getElementById(id);
+if(!obj) return;
+let startTimestamp= null;
+const step=(timestamp)=>{
+if(!startTimestamp) startTimestamp= timestamp;
+const progress= Math.min((timestamp- startTimestamp)/ duration, 1);
+const easeProgress= 1- Math.pow(1-progress, 3);
+const value= Math.floor(easeProgress*(target- start)+ start);
+obj.textContent= Math.abs(value);
+if(progress<1){
+window.requestAnimationFrame(step);
+} else{
+obj.textContent= Math.abs(target);
+}
+};
+window.requestAnimationFrame(step);
+}
+
+function startCounters(){
+const observer= new IntersectionObserver((entries)=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+animateCounter('counter1', 0, 99, 1200);
+animateCounter('counter2', 0, 50, 1400);
+animateCounter('counter3', 0, 8000, 1600);
+observer.disconnect();
+}
+});
+},{threshold: 0.3});
+const statsSection= document.querySelector('.grid.grid-cols-3');
+if(statsSection) observer.observe(statsSection);
+}
+
+// Validación de inputs
+const inputs= document.querySelectorAll('.input-modern');
+inputs.forEach(input=>{
+input.addEventListener('input', function(){
+if(this.value.trim().length>2){
+this.classList.add('input-valid');
+this.classList.remove('input-invalid');
+} else{
+this.classList.remove('input-valid','input-invalid');
+}
+});
+input.addEventListener('blur', function(){
+if(this.hasAttribute('required')&& this.value.trim().length<3){
+this.classList.add('input-invalid');
+}
+});
+});
+
+// Manejo del formulario
+document.getElementById('triageForm')?.addEventListener('submit',(e)=>{
+e.preventDefault();
+const btn= e.target.querySelector('button[type="submit"]');
+const originalBtnContent= btn.innerHTML;
+btn.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> Procesando solicitud...';
+btn.classList.add('opacity-80','cursor-not-allowed');
+btn.disabled= true;
+
+const vehicle= document.getElementById('inputVehicle').value||'No especificado';
+const km= document.getElementById('inputKm').value||'No especificado';
+const fuelType= document.getElementById('inputFuelType').value||'No especificado';
+const symptoms= document.getElementById('inputSymptoms').value||'No especificado';
+const contextSelect= document.getElementById('inputContext');
+const context= contextSelect.options[contextSelect.selectedIndex]?.text||'No especificado';
+const name= document.getElementById('inputName').value||'Cliente';
+const phone= document.getElementById('inputPhone').value||'No proporcionado';
+
+// Mensaje para WhatsApp con el nuevo nombre y número
+const message=`🚗 *¡Hola AUTOTECNICA SERVICIOS!* 👋\n\n📛 *Cliente:* ${name}\n📱 *Contacto:* ${phone}\n\n🚘 *Vehículo:* ${vehicle}\n🛣 *Kilometraje:* ${km} km\n⛽ *Combustible:* ${fuelType}\n\n⚠ *Síntomas reportados:*\n${symptoms}\n\n🔍 *Contexto:* ${context}\n\n📅 *Solicito turno para diagnóstico profesional.* 💨`;
+
+// URL de WhatsApp con el nuevo número formateado para Argentina
+const whatsappUrl=`https://api.whatsapp.com/send?phone=+542901501110&text=${encodeURIComponent(message)}`;
+
+setTimeout(()=>{
+window.open(whatsappUrl,'_blank','noopener,noreferrer');
+btn.innerHTML='<i class="fa-solid fa-circle-check"></i> ¡Solicitud Enviada! ✅';
+btn.classList.add('bg-green-600');
+setTimeout(()=>{
+btn.innerHTML= originalBtnContent;
+btn.classList.remove('opacity-80','cursor-not-allowed','bg-green-600');
+btn.disabled= false;
+e.target.reset();
+document.querySelectorAll('.input-modern').forEach(el=>{
+el.classList.remove('input-valid','input-invalid');
+});
+}, 3500);
+}, 1200);
+});
+
+// Efecto parallax
+const parallaxImg= document.getElementById('parallax-img');
+if(parallaxImg){
+window.addEventListener('scroll',()=>{
+const scrollY= window.scrollY;
+if(scrollY< window.innerHeight){
+parallaxImg.style.transform=`translateY(${scrollY*0.25}px) scale(1.05)`;
+}
+},{passive: true});
+}
+
+// Efecto navbar al hacer scroll
+const navbar= document.getElementById('navbar');
+if(navbar){
+window.addEventListener('scroll',()=>{
+if(window.scrollY>50){
+navbar.classList.add('shadow-lg','bg-gray-900/95');
+navbar.classList.remove('glass');
+} else{
+navbar.classList.remove('shadow-lg','bg-gray-900/95');
+navbar.classList.add('glass');
+}
+},{passive: true});
+}
+
+// Inicialización
+checkStatus();
+setInterval(checkStatus, 60000);
+startCounters();
+
+document.querySelectorAll('.fade-in-up').forEach((el, i)=>{
+el.style.animationDelay=`${0.1+ i*0.12}s`;
+});
+
+// Smooth scroll para anclas
+document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+anchor.addEventListener('click', function(e){
+e.preventDefault();
+const targetId= this.getAttribute('href');
+if(targetId==='#') return;
+const targetElement= document.querySelector(targetId);
+if(targetElement){
+window.scrollTo({
+top: targetElement.offsetTop-80,
+behavior:'smooth'
+});
+}
+});
+});
+});
+</script>
 </body>
 </html>
+
 
 
 
