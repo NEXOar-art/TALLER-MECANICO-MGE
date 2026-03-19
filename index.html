@@ -965,8 +965,24 @@ Completa el formulario y nuestros técnicos prepararán el análisis previo ante
 <i class="fa-regular fa-clock text-primary-green text-xl mt-0.5 flex-shrink-0"></i>
 <div>
 <p class="font-medium" data-es="Horarios de atención:" data-en="Business hours:">Horarios de atención:</p>
-<p data-es="Lunes a Viernes: 09:30 - 18:30" data-en="Monday to Friday: 09:30 - 18:30">Lunes a Viernes: 09:30 - 18:30</p>
-<p data-es="Sábado y Domingo: Cerrado" data-en="Saturday and Sunday: Closed">Sábado y Domingo: Cerrado</p>
+<p data-es="Lunes a Sábado: 08:00 - 21:00" data-en="Monday to Saturday: 08:00 - 21:00">Lunes a Sábado: 08:00 - 21:00</p>
+<p data-es="Domingo: Cerrado" data-en="Sunday: Closed">Domingo: Cerrado</p>
+</div>
+</div>
+<!-- Dirección -->
+<div class="flex items-start gap-3 text-gray-300/90 text-sm mt-3">
+<i class="fa-solid fa-location-dot text-primary-green text-xl mt-0.5 flex-shrink-0"></i>
+<div>
+<p class="font-medium" data-es="Dirección:" data-en="Address:">Dirección:</p>
+<p>Manuel Ponferrada 156, San Fernando del Valle de Catamarca</p>
+</div>
+</div>
+<!-- WhatsApp -->
+<div class="flex items-start gap-3 text-gray-300/90 text-sm mt-3">
+<i class="fa-brands fa-whatsapp text-primary-green text-xl mt-0.5 flex-shrink-0"></i>
+<div>
+<p class="font-medium" data-es="WhatsApp:" data-en="WhatsApp:">WhatsApp:</p>
+<p>+54-3834530287</p>
 </div>
 </div>
 </div>
@@ -1064,7 +1080,7 @@ container.appendChild(particle);
 }
 }
 createParticles();
-// Verificar estado de apertura(horarios actualizados: L-V 09:30-18:30, S-D Cerrado)
+// Verificar estado de apertura(horarios actualizados: L-S 08:00-21:00, D Cerrado)
 function checkStatus(){
 const now= new Date();
 const hours= now.getHours();
@@ -1073,11 +1089,11 @@ const day= now.getDay();// 0= Domingo, 1= Lunes,..., 6= Sábado
 // Convertir a horas decimales para comparación precisa
 const currentTime= hours+ minutes/60;
 let isOpen= false;
-// Lunes a Viernes(1-5): 09:30 a 18:30
-if(day>=1 && day<=5){
-isOpen= currentTime>=9.5 && currentTime<18.5;
+// Lunes a Sábado(1-6): 08:00 a 21:00
+if(day>=1 && day<=6){
+isOpen= currentTime>=8.0 && currentTime<21.0;
 }
-// Sábado(6) y Domingo(0): Cerrado
+// Domingo(0): Cerrado
 else{
 isOpen= false;
 }
@@ -1101,28 +1117,36 @@ textDesktop.className='text-gray-400';
 // Mostrar próximo horario de apertura
 let nextOpen='';
 if(currentLang=== 'es'){
-if(day===0){// Domingo: abre lunes 09:30
-nextOpen='Abre Lunes 09:30';
-} else if(day===6){// Sábado: abre lunes
-nextOpen='Abre Lunes 09:30';
+if(day===0){// Domingo: abre lunes 08:00
+nextOpen='Abre Lunes 08:00';
+} else if(day===6){// Sábado
+if(currentTime>=21.0){
+nextOpen='Abre Lunes 08:00';
+} else {
+nextOpen='Abre hoy 08:00';
+}
 } else{// Lunes a Viernes
-if(currentTime>=18.5){
-nextOpen='Abre mañana 09:30';
-} else if(currentTime<9.5){
-nextOpen='Abre hoy 09:30';
+if(currentTime>=21.0){
+nextOpen='Abre mañana 08:00';
+} else if(currentTime<8.0){
+nextOpen='Abre hoy 08:00';
 }
 }
 barMobile.textContent=`🔴 Cerrado - ${nextOpen}`;
 }else{
-if(day===0){// Sunday: opens Monday 09:30
-nextOpen='Opens Mon 09:30';
-} else if(day===6){// Saturday: opens Monday
-nextOpen='Opens Mon 09:30';
+if(day===0){// Sunday: opens Monday 08:00
+nextOpen='Opens Mon 08:00';
+} else if(day===6){// Saturday
+if(currentTime>=21.0){
+nextOpen='Opens Mon 08:00';
+} else {
+nextOpen='Opens Today 08:00';
+}
 } else{// Monday to Friday
-if(currentTime>=18.5){
-nextOpen='Opens tomorrow 09:30';
-} else if(currentTime<9.5){
-nextOpen='Opens today 09:30';
+if(currentTime>=21.0){
+nextOpen='Opens tomorrow 08:00';
+} else if(currentTime<8.0){
+nextOpen='Opens today 08:00';
 }
 }
 barMobile.textContent=`🔴 Closed - ${nextOpen}`;
