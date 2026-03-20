@@ -496,13 +496,12 @@ Pre-Diagnóstico
 <!-- Botones flotantes premium (MODIFICADO: agregado botón WhatsApp) -->
 <div class="fixed bottom-24 md:bottom-8 right-4 z-50 animate-float flex flex-col gap-3">
 <!-- Botón flotante de WhatsApp directo (NUEVO) -->
-<a href="https://api.whatsapp.com/send?phone=543834530287" target="_blank" rel="noopener noreferrer" 
-   class="bg-[#25D366] hover:bg-[#128C7E] text-white p-3.5 md:p-4 rounded-full shadow-lg transition-all hover:scale-110 flex items-center justify-center gap-2 group" 
-   title="Chat directo por WhatsApp" style="animation: float 6s ease-in-out infinite;">
-  <i class="fa-brands fa-whatsapp text-2xl md:text-3xl"></i>
-  <span class="hidden lg:inline text-xs font-bold whitespace-nowrap">Chat</span>
+<a href="https://api.whatsapp.com/send?phone=543834530287" target="_blank" rel="noopener noreferrer"
+class="bg-[#25D366] hover:bg-[#128C7E] text-white p-3.5 md:p-4 rounded-full shadow-lg transition-all hover:scale-110 flex items-center justify-center gap-2 group"
+title="Chat directo por WhatsApp" style="animation: float 6s ease-in-out infinite;">
+<i class="fa-brands fa-whatsapp text-2xl md:text-3xl"></i>
+<span class="hidden lg:inline text-xs font-bold whitespace-nowrap">Chat</span>
 </a>
-
 <a href="#diagnostico" class="btn-primary px-5 py-3 md:px-7 md:py-3.5 rounded-2xl shadow-neon transition flex items-center gap-2.5 hover:shadow-glow text-sm font-semibold group">
 <i class="fa-solid fa-calendar-check text-lg"></i>
 <span class="hidden xs:inline" data-es="Pedir Turno" data-en="Book Appointment">Pedir Turno</span>
@@ -971,7 +970,6 @@ Completa el formulario y nuestros técnicos prepararán el análisis previo ante
 <div class="text-left max-w-md">
 <h3 class="font-display font-bold text-2xl md:text-3xl text-white mb-2" data-es="¿Dónde estamos?" data-en="Where are we?">¿Dónde estamos?</h3>
 <p class="text-gray-400/90 mb-4 text-base" data-es="Visítanos para validación final y reparaciones especializadas." data-en="Visit us for final validation and specialized repairs.">Visítanos para validación final y reparaciones especializadas.</p>
-
 <!-- Dirección (NUEVO) -->
 <div class="flex items-start gap-3 text-gray-300/90 text-sm mb-2">
 <i class="fa-regular fa-location-dot text-primary-green text-xl mt-0.5 flex-shrink-0"></i>
@@ -980,7 +978,6 @@ Completa el formulario y nuestros técnicos prepararán el análisis previo ante
 <p>Manuel Ponferrada 156, San Fernando del Valle de Catamarca</p>
 </div>
 </div>
-
 <!-- WhatsApp (NUEVO) -->
 <div class="flex items-start gap-3 text-gray-300/90 text-sm mb-2">
 <i class="fa-brands fa-whatsapp text-primary-green text-xl mt-0.5 flex-shrink-0"></i>
@@ -989,7 +986,6 @@ Completa el formulario y nuestros técnicos prepararán el análisis previo ante
 <p dir="ltr">+54-3834530287</p>
 </div>
 </div>
-
 <!-- Horarios (ACTUALIZADO: Lunes a Sábado 08:00 - 21:00) -->
 <div class="flex items-start gap-3 text-gray-300/90 text-sm">
 <i class="fa-regular fa-clock text-primary-green text-xl mt-0.5 flex-shrink-0"></i>
@@ -1036,8 +1032,8 @@ Completa el formulario y nuestros técnicos prepararán el análisis previo ante
 </div>
 <!-- Firma del diseñador NEXO-Art (NUEVO) -->
 <div class="border-t border-white/10 mt-6 pt-4 text-center">
-<a href="https://nexoar-art.github.io/NEXO-art/" target="_blank" rel="noopener noreferrer" 
-   class="inline-flex items-center gap-1.5 text-xs text-gray-600 hover:text-primary-green transition font-medium group">
+<a href="https://nexoar-art.github.io/NEXO-art/" target="_blank" rel="noopener noreferrer"
+class="inline-flex items-center gap-1.5 text-xs text-gray-600 hover:text-primary-green transition font-medium group">
 <i class="fa-solid fa-pen-nib group-hover:scale-110 transition-transform"></i>
 Diseño: NEXO-Art
 </a>
@@ -1054,7 +1050,7 @@ Diseño: NEXO-Art
 <i class="fa-solid fa-microchip"></i> <span data-es="Diagnóstico" data-en="Diagnosis">Diagnóstico</span>
 </a>
 </div>
-<!-- JAVASCRIPT FUNCIONAL (MODIFICADO: lógica de horarios actualizada) -->
+<!-- JAVASCRIPT FUNCIONAL (MODIFICADO: lógica de horarios actualizada y contadores mejorados) -->
 <script>
 document.addEventListener('DOMContentLoaded',()=>{
 // Language Switcher
@@ -1082,8 +1078,7 @@ langToggle?.addEventListener('click',()=>{
 const newLang= currentLang=== 'es' ? 'en' : 'es';
 translatePage(newLang);
 });
-// Actualizar año en footer
-document.getElementById('current-year').textContent= new Date().getFullYear();
+
 // Generar partículas decorativas
 function createParticles(){
 const container= document.getElementById('particles');
@@ -1099,7 +1094,8 @@ container.appendChild(particle);
 }
 }
 createParticles();
-// Verificar estado de apertura (ACTUALIZADO: Lunes a Sábado 08:00-21:00)
+
+// Verificar estado de apertura
 function checkStatus(){
 const now= new Date();
 const hours= now.getHours();
@@ -1108,7 +1104,7 @@ const day= now.getDay();// 0= Domingo, 1= Lunes,..., 6= Sábado
 // Convertir a horas decimales para comparación precisa
 const currentTime= hours+ minutes/60;
 let isOpen= false;
-// Lunes a Sábado (1-6): 08:00 a 21:00 (MODIFICADO)
+// Lunes a Sábado (1-6): 08:00 a 21:00
 if(day>=1 && day<=6){
 isOpen= currentTime>=8 && currentTime<21;
 }
@@ -1165,39 +1161,47 @@ barMobile.textContent=`🔴 Closed - ${nextOpen}`;
 barMobile.className='md:hidden w-full py-2 text-center text-xs font-bold uppercase tracking-wide text-gray-300 bg-gray-900/80';
 }
 }
-// Animación de contadores
-function animateCounter(id, start, target, duration){
-const obj= document.getElementById(id);
-if(!obj) return;
-let startTimestamp= null;
-const step=(timestamp)=>{
-if(!startTimestamp) startTimestamp= timestamp;
-const progress= Math.min((timestamp- startTimestamp)/ duration, 1);
-const easeProgress= 1- Math.pow(1-progress, 3);
-const value= Math.floor(easeProgress*(target- start)+ start);
-obj.textContent= Math.abs(value);
-if(progress<1){
-window.requestAnimationFrame(step);
-} else{
-obj.textContent= Math.abs(target);
+
+// Animación de contadores MEJORADA
+function animateCounter(id, start, target, duration) {
+    const obj = document.getElementById(id);
+    if (!obj) return;
+    let startTimestamp = null;
+    const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        // Easing suave: easeOutCubic
+        const easeProgress = 1 - Math.pow(1 - progress, 3);
+        const value = Math.floor(easeProgress * (target - start) + start);
+        // Formato locale español (Argentina) para miles (ej: 8.000)
+        obj.textContent = value.toLocaleString('es-AR');
+        if (progress < 1) {
+            window.requestAnimationFrame(step);
+        } else {
+            // Asegurar valor final exacto formateado
+            obj.textContent = target.toLocaleString('es-AR');
+        }
+    };
+    window.requestAnimationFrame(step);
 }
-};
-window.requestAnimationFrame(step);
+
+function startCounters() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Duraciones diferenciadas: 1.5s, 1.8s, 2s para efecto escalonado
+                animateCounter('counter1', 0, 99, 1500);   // Precisión
+                animateCounter('counter2', 0, 50, 1800);   // Ahorro
+                animateCounter('counter3', 0, 8000, 2000); // Vehículos
+                observer.disconnect();
+            }
+        });
+    }, { threshold: 0.3 }); // Se activa cuando el 30% del elemento es visible
+
+    const statsSection = document.querySelector('.grid.grid-cols-3');
+    if (statsSection) observer.observe(statsSection);
 }
-function startCounters(){
-const observer= new IntersectionObserver((entries)=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){
-animateCounter('counter1', 0, 99, 1200);
-animateCounter('counter2', 0, 50, 1400);
-animateCounter('counter3', 0, 8000, 1600);
-observer.disconnect();
-}
-});
-},{threshold: 0.3});
-const statsSection= document.querySelector('.grid.grid-cols-3');
-if(statsSection) observer.observe(statsSection);
-}
+
 // Validación de inputs
 const inputs= document.querySelectorAll('.input-modern');
 inputs.forEach(input=>{
@@ -1215,6 +1219,7 @@ this.classList.add('input-invalid');
 }
 });
 });
+
 // Manejo del formulario
 document.getElementById('triageForm')?.addEventListener('submit',(e)=>{
 e.preventDefault();
@@ -1261,6 +1266,7 @@ el.classList.remove('input-valid','input-invalid');
 }, 3500);
 }, 1200);
 });
+
 // Efecto parallax
 const parallaxImg= document.getElementById('parallax-img');
 if(parallaxImg){
@@ -1271,6 +1277,7 @@ parallaxImg.style.transform=`translateY(${scrollY*0.25}px) scale(1.05)`;
 }
 },{passive: true});
 }
+
 // Efecto navbar al hacer scroll
 const navbar= document.getElementById('navbar');
 if(navbar){
@@ -1284,6 +1291,7 @@ navbar.classList.add('glass');
 }
 },{passive: true});
 }
+
 // Inicialización
 checkStatus();
 setInterval(checkStatus, 60000);
@@ -1291,6 +1299,7 @@ startCounters();
 document.querySelectorAll('.fade-in-up').forEach((el, i)=>{
 el.style.animationDelay=`${0.1+ i*0.12}s`;
 });
+
 // Smooth scroll para anclas
 document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
 anchor.addEventListener('click', function(e){
